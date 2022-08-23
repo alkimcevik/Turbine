@@ -6,6 +6,7 @@ from seleniumbase import BaseCase
 
 class MyTestClass(BaseCase):
     def test_basics(self):
+        # some comment for committing
         self.open("https://www.saucedemo.com")
         self.type("#user-name", "standard_user")
         self.type("#password", "secret_sauce\n")
