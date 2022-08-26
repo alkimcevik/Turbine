@@ -45,7 +45,7 @@ class FooterTest(Footer):
         self.click(self.facebook)
         self.wait(2)
         print(self.get_current_url())
-        self.assert_true(self.get_current_url() == 'https://www.facebook.com/nypl')
+        self.assert_true("facebook" in self.get_current_url())
         self.go_back()
 
         self.assert_element(self.twitter)
