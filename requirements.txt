@@ -133,3 +133,11 @@ pyflakes==2.1.1;python_version<"3.6"
 pyflakes==2.5.0;python_version>="3.6"
 pycodestyle==2.5.0;python_version<"3.6"
 pycodestyle==2.9.1;python_version>="3.6"
+
+seleniumbase~=3.5.8
+selenium~=4.3.0
+pytest~=7.1.2
+requests~=2.28.1
+setuptools~=65.0.2
+fasteners~=0.17.3
+rich~=12.5.1
