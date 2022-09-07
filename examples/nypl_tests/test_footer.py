@@ -50,15 +50,15 @@ class FooterTest(Footer):
 
         self.assert_element(self.twitter)
         self.click(self.twitter)
-        self.assert_true(self.get_current_url() == 'https://twitter.com/nypl')
+        self.assert_true('twitter' in self.get_current_url())
         self.go_back()
 
         self.assert_element(self.instagram)
         self.click(self.instagram)
-        self.assert_true('https://www.instagram.com/' in self.get_current_url())
+        self.assert_true('instagram' in self.get_current_url())
         self.go_back()
 
         self.assert_element(self.youtube)
         self.click(self.youtube)
-        self.assert_true(self.get_current_url() == 'https://www.youtube.com/user/NewYorkPublicLibrary')
+        self.assert_true('youtube' in self.get_current_url())
         self.go_back()
