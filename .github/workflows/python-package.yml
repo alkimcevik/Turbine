@@ -96,9 +96,9 @@ jobs:
     #- name: Run behave examples/behave_bdd/features/calculator.feature -D rs -D crumbs -D xvfb
     #  run: |
     #    behave examples/behave_bdd/features/calculator.feature -D rs -D crumbs -D xvfb -T -k
-    - name: Run behave examples/behave_bdd/features/realworld.feature -D rs -D crumbs -D xvfb
-      run: |
-        behave examples/behave_bdd/features/realworld.feature -D rs -D crumbs -D xvfb -T -k
+    #- name: Run behave examples/behave_bdd/features/realworld.feature -D rs -D crumbs -D xvfb
+    #  run: |
+    #    behave examples/behave_bdd/features/realworld.feature -D rs -D crumbs -D xvfb -T -k
     - name: Run pytest examples/nypl_tests/test_search_filter.py --browser=chrome --xvfb
       run: |
         pytest examples/nypl_tests/test_search_filter.py --browser=chrome --headless -v -s --junit-xml=junit/test-results.xml
