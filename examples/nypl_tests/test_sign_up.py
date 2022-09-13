@@ -19,6 +19,8 @@ class SignUpTests(SignUpPage):
     def test_nyc_teacher(self):
         # As a valid NYC teacher, I want to successfully sign-up and clearly understand any error that may arise while completing the form.
 
+        # positive test scenario
+        # filling out everything properly so the user can submit the form
         self.send_keys(self.email, "teacher@schools.nyc.gov")
         self.send_keys(self.altEmail, "alt_teacher@schools.nyc.gov")
         self.send_keys(self.first_name, "Joe")
@@ -31,13 +33,14 @@ class SignUpTests(SignUpPage):
         self.send_keys(self.pin, "1234")
         self.send_keys(self.comments, "Joe needs a new laptop")
         self.click(self.sign_up)
+        # asserting submission text is visible
         self.assert_element(self.submission_text)
         # self.wait(3)
-
 
     def test_non_nyc_teacher(self):
         # As a teacher from a district outside NYC, I want to try to submit the form without properly filling in the required fields.
 
+        # negative test scenario, the user would not be able to submit the form
         # entering a non_nyc school
         self.send_keys(self.email, "non_nyc_teacher@schools.non_nyc.gov")
         self.send_keys(self.altEmail, "non_nyc_teacher@schools.non_nyc.gov")

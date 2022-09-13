@@ -17,16 +17,10 @@ class SearchFilterTests(SearchPage):
         super().tearDown()
 
     def test_slider(self):
-        # TODO Assign roles for each test, e.g. "As a teacher, administrator..."
-        # As an elementary, middle school or high school teacher, I want to find teacher sets that are currently available and appropriate for my level of teaching.
-        # As a teacher of children with vision disabilities, I want to find teacher sets that include books with large print.
-        # As a biology teacher, I want to find all teacher sets about animals.
-        # As an elementary school teacher, I want to find teacher sets with books that start with the letter W.
-        # As a school administrator, I want to review the teacher sets in grade order from highest to lowest.
-        # As a French teacher, I want to find teacher sets that are written in French.
+        # As an elementary, middle school or high school teacher, I want to find teacher sets that are currently
+        # available and appropriate for my level of teaching.
 
         # test for Grades 1 to 5
-
         # move slider thumb left and right to adjust the grades 1-5
         self.press_right_arrow(self.slider_left, times=1)
         self.press_left_arrow(self.slider_right, times=7)
@@ -34,12 +28,10 @@ class SearchFilterTests(SearchPage):
         # result amount for 1-5 grades
         result_amount = int(self.get_text(self.result_text).split()[0])
         print(str(result_amount) + " results amount for grades 1 to 5")
-
         # assert result amount is greater than 1
         self.assert_true(result_amount >= 1, "Result amount is NOT greater than expected amount")
 
         # test for Grades 5 to 8
-
         # refresh the page so that slider can go back to original values
         self.refresh()
         # move slider thumb left and right to adjust the grades 5-8
@@ -49,10 +41,10 @@ class SearchFilterTests(SearchPage):
         # result amount for 5-8 grades
         result_amount = int(self.get_text(self.result_text).split()[0])
         print(str(result_amount) + " results amount for grades 5 to 8")
-
         # assert result amount is greater than 1
         self.assert_true(result_amount >= 1, "Result amount is NOT greater than expected amount")
 
+        # test for Grades 9 to 12
         # refresh the page so that slider can go back to original values
         self.refresh()
         # move slider thumb left and right to adjust the grades 9-12
@@ -62,12 +54,12 @@ class SearchFilterTests(SearchPage):
         # result amount for 9-12 grades
         result_amount = int(self.get_text(self.result_text).split()[0])
         print(str(result_amount) + " results amount for grades 9 to 12")
-
         # assert result amount is greater than 1
         self.assert_true(result_amount >= 1, "Result amount is NOT greater than expected amount")
 
     def test_search_bar(self):
-        # As a teacher of children with vision disabilities, I want to find teacher sets that include books with large print.
+        # As a teacher of children with vision disabilities, I want to find teacher sets that include books with
+        # large print.
 
         # sending 'Large Print' to the search bar
         self.send_keys(self.search_bar, "Large Print")
@@ -110,7 +102,7 @@ class SearchFilterTests(SearchPage):
         self.click(self.sort_by_z_a)
         self.wait(1)
 
-        # find h4 amount on the page to use in the for loop
+        # find h4 amount on the page to use for the length in the for loop
         h4_amount = len(self.find_elements(self.h4_links))
 
         count = 0
@@ -123,6 +115,7 @@ class SearchFilterTests(SearchPage):
                 count += 1
 
         print(str(count) + " total word starting with W.")
+        # asserting the result is >= 1
         self.assert_true(count >= 1, "No teacher sets with books that start with the letter W.")
 
     def test_high_low(self):
@@ -138,7 +131,7 @@ class SearchFilterTests(SearchPage):
 
         # print the result amount
         print(str(result_amount) + " results found")
-
+        # asserting the result is >= 1
         self.assert_true(result_amount >= 1, "There is not enough teacher sets in this order")
 
     def test_language(self):
@@ -150,6 +143,6 @@ class SearchFilterTests(SearchPage):
 
         # print the result amount
         print(str(result_amount) + " results found")
-
+        # asserting the result is >= 1
         self.assert_true(result_amount >= 1, "There is not enough teacher sets in this order")
 

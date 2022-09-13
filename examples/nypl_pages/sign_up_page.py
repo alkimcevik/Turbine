@@ -20,6 +20,5 @@ class SignUpPage(BaseCase):
     invalid_pin = '//*[@id="pin-helperText"]'
     invalid_school = '//*[@id="school-helperText"]'
 
-
     def open_sign_up_page(self):
         self.open("https://nypl-ds-test-app.vercel.app/fullPages/sign-up#above-header-notification")

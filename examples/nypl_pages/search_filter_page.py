@@ -7,7 +7,6 @@ class SearchPage(BaseCase):
     slider_left = '//*[@id="slider-thumb-grades-slider-0"]'
     slider_right = '//*[@id="slider-thumb-grades-slider-1"]'
 
-
     search_bar = '//*[@id="searchbar-textinput-search-bar"]'
     search_button = '//*[@id="searchbar-button-search-bar"]'
 
@@ -20,8 +19,5 @@ class SearchPage(BaseCase):
 
     lan_french = '//*[@id="language-10-wrapper"]/label/span[2]'
 
-
     def open_search_filter_page(self):
         self.open("https://nypl-ds-test-app.vercel.app/fullPages/search-and-filter#above-header-notification")
-
-
