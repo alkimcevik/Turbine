@@ -62,7 +62,7 @@ jobs:
         SLACK_CHANNEL: test_reports
         #SLACK_MESSAGE: "Turbine GH report"
         SLACK_TITLE: Turbine Test Results
-        SLACK_WEBHOOK: ${{ secrets.LIGHTHOUSE_2 }}
+        SLACK_WEBHOOK: ${{ secrets.TURBINE }}
         SLACK_USERNAME: incoming-webhook  
     #- name: Run pytest examples/unit_tests/verify_framework.py --browser=chrome --headless
     #  run: |
