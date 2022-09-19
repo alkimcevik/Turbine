@@ -1,14 +1,10 @@
-name: CI build
+name: 'Turbine CI'
 
 on:
-  pull_request:
-    branches:
-  push:
-    branches:
-      - master
-  workflow_dispatch:
-    branches:
-
+  push: 
+    branches: [ master ]
+  schedule:
+    - cron: "30 7 * * 1"
 jobs:
   build:
 
@@ -60,6 +56,35 @@ jobs:
       run: |
         echo "def test_2(): pass" > nothing2.py
         nosetests nothing2.py
+  # Allure test reports reporting to Slack test-results channel
+    - name: Get Allure history
+      uses: actions/checkout@v2
+      if: always()
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages
+    - name: Generate Allure report
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      with:
+        allure_results: allure-results
+        allure_history: allure-history
+    - name: Deploy report to Github Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v2
+      env:
+        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: allure-history
+    - name: Turbine Slack Notification
+      uses: rtCamp/action-slack-notify@v2
+      env: 
+        SLACK_CHANNEL: test_reports
+        #SLACK_MESSAGE: "Turbine GH report"
+        SLACK_TITLE: Turbine Test Results
+        SLACK_WEBHOOK: ${{ secrets.LIGHTHOUSE_2 }}
+        SLACK_USERNAME: incoming-webhook  
     #- name: Run pytest examples/unit_tests/verify_framework.py --browser=chrome --headless
     #  run: |
     #    pytest examples/unit_tests/verify_framework.py --browser=chrome --headless -v -s --junit-xml=junit/test-results.xml
