@@ -6,7 +6,7 @@ Automation suite for Design System's Turbine app.
 
 Written with Python and SeleniumBase. Page object model has been used for the tests.
 
-Test file are in examples/nypl_tests
+Test files are in examples/nypl_tests
 
 
 # Setup
