@@ -13,10 +13,10 @@ Test file are in examples/nypl_tests
 
 Create a new project in PyCharm and clone this repo.
 
-Go to terminal in PyCharm, and run command “pip3 install seleniumbase”
+Go to terminal in PyCharm, and run command “pip3 install seleniumbase”.
 Type “sbase” or “seleniumbase” to check if it is installed. You should see its version and other related stuff.
-Install chromedriver with “sbase install chromedriver latest”
-Install requirements/dependencies with “pip freeze > requirements.txt” for Github/Jenkins integration
+Install chromedriver with “sbase install chromedriver latest”.
+Install requirements/dependencies with “pip freeze > requirements.txt” for Github/Jenkins integration.
 Base interpereter is Python 3.10 for this test suite.
 
 # Running Tests
