@@ -26,7 +26,7 @@ Base interpereter is Python 3.10 for this test suite.
 # Running Tests
  ## By Command Line
  
- cd into the examples file and type 'pytest file_name'
+ cd into the nypl_tests files under examples (examples/nypl_tests) file and type 'pytest file_name'
  
  for instance: - cd ~/examples/nypl_tests 
                - pytest test_sign_up.py
