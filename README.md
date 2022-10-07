@@ -11,6 +11,9 @@ Test files are in examples/nypl_tests
 
 # Setup
 
+Download Pycharm CE 
+-for Mac:     https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=mac&code=PCC 
+-for Windows: https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=windows&code=PCC
 Create a new project in PyCharm CE and clone this repo.
 
 Go to terminal in PyCharm CE, and run command “pip3 install seleniumbase”.
