@@ -31,6 +31,10 @@ Base interpereter is Python 3.10 for this test suite.
  for instance: - cd ~/examples/nypl_tests 
                - pytest test_sign_up.py
                
+ try adding --demo for a slower run:
+ pytest test_sign_up.py --demo
+
+               
  ## In PyCharm CE
  
  Click on the Green arrow next to the 'test_' files or right click anywhere and choose 'Run'.
