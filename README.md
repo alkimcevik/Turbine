@@ -11,9 +11,9 @@ Test files are in examples/nypl_tests
 
 # Setup
 
-Create a new project in PyCharm and clone this repo.
+Create a new project in PyCharm CE and clone this repo.
 
-Go to terminal in PyCharm, and run command “pip3 install seleniumbase”.
+Go to terminal in PyCharm CE, and run command “pip3 install seleniumbase”.
 
 Type “sbase” or “seleniumbase” to check if it is installed. You should see its version and other related stuff.
 
@@ -31,7 +31,7 @@ Base interpereter is Python 3.10 for this test suite.
  for instance: - cd ~/examples/nypl_tests 
                - pytest test_sign_up.py
                
- ## In PyCharm
+ ## In PyCharm CE
  
  Click on the Green arrow next to the 'test_' files or right click anywhere and choose 'Run'.
 
