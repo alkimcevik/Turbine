@@ -42,7 +42,7 @@ Base interpereter is Python 3.10 for this test suite.
  # Note
  
  To test the mobile tests in 'test_mobile.py', the test should be run with --mobile command on terminal, for instance:
-# pytest test_mobile.py --headless --mobile
+ pytest test_mobile.py --headless --mobile
 
 
 
