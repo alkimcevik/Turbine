@@ -38,6 +38,11 @@ Base interpereter is Python 3.10 for this test suite.
  ## In PyCharm CE
  
  Click on the Green arrow next to the 'test_' files or right click anywhere and choose 'Run'.
+ 
+ # Note
+ 
+ To test the mobile tests in 'test_mobile.py', the test should be run with --mobile command on terminal, for instance:
+# pytest test_mobile.py --headless --mobile
 
 
 
