@@ -59,7 +59,7 @@ jobs:
     - name: Turbine Slack Notification
       uses: rtCamp/action-slack-notify@v2
       env: 
-        #SLACK_CHANNEL: test_reports
+        SLACK_CHANNEL: test_reports
         #SLACK_MESSAGE: "Turbine GH report"
         SLACK_TITLE: Turbine Test Results
         SLACK_WEBHOOK: ${{ secrets.TURBINE }}
