@@ -31,6 +31,10 @@ class BookRecommendationPage(BaseCase):
     s_letter = '//*[@id="filter-s"]'
     show_all = '//*[@id="filter-showAll"]'
     kazuo_book = '//*[@id="book-TheDriftingClassroom"]'
+    h4_heading = '//*[@id="Black, White, and The Grey-author"]'
+    winter_teen_h2 = '//*[@id="data-heading"]'
+    book_result = '//*[@id="mainContent"]/div[3]/div[2]/p/span'
+
 
     def open_book_recommendation_page(self):
         self.open("https://nypl-ds-test-app.vercel.app/fullPages/recommendations/adults")

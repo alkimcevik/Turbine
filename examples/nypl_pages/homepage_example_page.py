@@ -19,5 +19,18 @@ class HomePage(BaseCase):
     submit_button = '//*[@id="submit"]'
     submission_text = 'Thank you for submitting your feedback.'
 
+    dune_related_1 = '/html/body/div/div[1]/div[2]/main/div/div[4]/div[2]/div[2]/div[1]/div/div[2]/div[1]/div[2]/h4/a'
+    dune_related_2 = '/html/body/div/div[1]/div[2]/main/div/div[4]/div[2]/div[2]/div[1]/div/div[2]/div[2]/div[2]/h4/a'
+    dune_related_3 = '/html/body/div/div[1]/div[2]/main/div/div[4]/div[2]/div[2]/div[1]/div/div[2]/div[3]/div[2]/h4/a'
+
+    the_eye_of_the_world_tab = '//*[@id="homepage-tabs-2--tab-1"]'
+    teofw_related_1 = '/html/body/div/div[1]/div[2]/main/div/div[4]/div[2]/div[2]/div[2]/div/div[2]/div[1]/div[2]/h4'
+    teofw_related_2 = '/html/body/div/div[1]/div[2]/main/div/div[4]/div[2]/div[2]/div[2]/div/div[2]/div[2]/div[2]/h4'
+
+    enders_game_tab = '//*[@id="homepage-tabs-2--tab-2"]'
+    ender_related_1 = '/html/body/div/div[1]/div[2]/main/div/div[4]/div[2]/div[2]/div[3]/div/div[2]/div[1]/div[2]/h4/a'
+    ender_related_2 = '/html/body/div/div[1]/div[2]/main/div/div[4]/div[2]/div[2]/div[3]/div/div[2]/div[2]/div[2]/h4/a'
+    ender_related_3 = '/html/body/div/div[1]/div[2]/main/div/div[4]/div[2]/div[2]/div[3]/div/div[2]/div[3]/div[2]/h4/a'
+
     def open_homepage(self):
         self.open("https://nypl-ds-test-app.vercel.app/fullPages/homepage")
