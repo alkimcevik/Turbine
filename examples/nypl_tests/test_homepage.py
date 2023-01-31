@@ -64,6 +64,7 @@ class HomepageTests(HomePage):
         # As a library patron viewing the Featured Books, I expect the featured books to be different for each
         # featured book.
 
+        # asserting if the 'Featured Books' are related
         book_dict = {}  # creating a dictionary to add the book names from the 'featured books' link
         for x in range(1, 4):
             book_dict["book{0}".format(x)] = self.get_text('/html/body/div/div[1]/div[2]/main/div/div[4]/div[2]/div['
@@ -81,6 +82,8 @@ class HomepageTests(HomePage):
                 print(book)
                 if book in book_set:
                     return False
+                # Double check this: does the 'return False' inside this for loop break the loop and return False for
+                # the function or does it just break the loop and the function will always return True?
                 book_set.add(book)
             return True
 
@@ -89,6 +92,36 @@ class HomepageTests(HomePage):
         print("_-_-_-_-_-_-_-_-_-")
         self.assert_true(result)  # checking if the result is TRUE
         print(result)  # printing the boolean result
+
+        # assertion for DUNE's 'related books'
+        dune_book_1 = self.get_text(self.dune_related_1)
+        dune_book_2 = self.get_text(self.dune_related_2)
+        dune_book_3 = self.get_text(self.dune_related_3)
+        print("\n" + dune_book_1)  # optional print
+        print(dune_book_2)  # optional print
+        print(dune_book_3)  # optional print
+
+        assert dune_book_1 != dune_book_2 != dune_book_3
+
+        # assertion for "The Eye of the World's" 'related books'
+        self.click(self.the_eye_of_the_world_tab)
+        teofw_book_1 = self.get_text(self.teofw_related_1)
+        teofw_book_2 = self.get_text(self.teofw_related_2)
+        print("\n" + teofw_book_1)  # optional print
+        print(teofw_book_2)  # optional print
+
+        assert teofw_book_1 != teofw_book_2
+
+        # assertion for "Ender's Game" 'related books'
+        self.click(self.enders_game_tab)
+        ender_book_1 = self.get_text(self.ender_related_1)
+        ender_book_2 = self.get_text(self.ender_related_2)
+        ender_book_3 = self.get_text(self.ender_related_3)
+        print("\n" + ender_book_1)  # optional print
+        print(ender_book_2)  # optional print
+        print(ender_book_3)  # optional print
+
+        assert ender_book_1 != ender_book_2 != ender_book_3
 
     def test_featured_awards(self):
         print("test_featured_awards()\n")
@@ -114,10 +147,10 @@ class HomepageTests(HomePage):
         # asserting 'related books' h4 heading
         self.assert_element(self.related_books_h4)
 
-        # asserting the amount of the related books >= 1
+        # asserting the amount of the related books == 3
         related_books_amount = len(self.find_elements(self.related_books_locator))
-        print("There is/are " + str(related_books_amount) + " related books to Ender's Game.")  # optional print
-        self.assert_true(related_books_amount >= 1)
+        print("There are " + str(related_books_amount) + " related books to Ender's Game.")  # optional print
+        self.assert_true(related_books_amount == 3)
 
     def test_feedback_form(self):
         print("test_feedback_form()\n")
