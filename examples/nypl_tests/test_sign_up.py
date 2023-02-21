@@ -1,4 +1,4 @@
-from examples.nypl_pages.sign_up_page import SignUpPage
+from examples.nypl_pages.page_sign_up import SignUpPage
 
 
 class SignUpTests(SignUpPage):
