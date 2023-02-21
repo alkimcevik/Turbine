@@ -1,5 +1,5 @@
 from seleniumbase import BaseCase
-from examples.nypl_pages.book_recommendation_page import BookRecommendationPage
+from examples.nypl_pages.page_book_recommendation import BookRecommendationPage
 
 
 class MobileTests(BookRecommendationPage):

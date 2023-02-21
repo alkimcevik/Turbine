@@ -1,4 +1,4 @@
-from examples.nypl_pages.search_filter_page import SearchPage
+from examples.nypl_pages.page_search_filter import SearchPage
 
 
 class SearchFilterTests(SearchPage):
@@ -155,7 +155,7 @@ class SearchFilterTests(SearchPage):
             first_letter = self.get_text('/html/body/div/div/div[2]/main/div[3]/div/div/div[1]/div[' + str(x) + ']/div/div/div/h4/a').split()[0][0]
             print(first_letter + " is the first letter")
 
-            if first_letter is 'W' or first_letter is 'w':
+            if first_letter == 'W' or first_letter == 'w':
                 count += 1
 
         print(str(count) + " total word starting with W.")

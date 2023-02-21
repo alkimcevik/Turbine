@@ -1,4 +1,4 @@
-from examples.nypl_pages.homepage_example_page import HomePage
+from examples.nypl_pages.page_homepage_example import HomePage
 
 
 class HomepageTests(HomePage):
@@ -82,8 +82,6 @@ class HomepageTests(HomePage):
                 print(book)
                 if book in book_set:
                     return False
-                # Double check this: does the 'return False' inside this for loop break the loop and return False for
-                # the function or does it just break the loop and the function will always return True?
                 book_set.add(book)
             return True
 
