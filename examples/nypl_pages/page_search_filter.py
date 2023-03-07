@@ -15,7 +15,7 @@ class SearchPage(BaseCase):
     sort_by = '//*[@id="sort-by-select"]'
     sort_by_z_a = '//*[@id="sort-by-select"]/option[3]'
     sort_by_high_low = '//*[@id="sort-by-select"]/option[5]'
-    h4_links = '/html/body/div/div/div[2]/main/div[3]/div/div/div[1]/div'
+    h4_links = '//*[@id="mainContent"]/div[3]/div/div[2]/div[1]/div'
 
     lan_french = '//*[@id="language-10-wrapper"]/label/span[2]'
 

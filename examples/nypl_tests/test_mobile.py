@@ -13,13 +13,6 @@ class MobileTests(BookRecommendationPage):
         # pytest test_mobile.py --headless --mobile
         # running on an IDE will result with a failure and 'Element was still visible after 7 seconds!' Exception
 
-        # todo: CI/CD > add a new command line for mobile on python-package.yml on Github Actions
-        # for instance:
-        """
-        - name: Run pytest examples/nypl_tests/test_mobile.py --browser=chrome --xvfb
-          run: |
-            pytest examples/nypl_tests/test_mobile.py --browser=chrome --headless -v -s --mobile
-        """
         # As a mobile user, I expect to see only the current page in the breadcrumbs, and I want to be able to
         # navigate to the parent page.
         # https://nypl-ds-test-app.vercel.app/fullPages/recommendations/adults

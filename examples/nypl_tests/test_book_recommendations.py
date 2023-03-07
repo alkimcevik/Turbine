@@ -67,14 +67,14 @@ class BookRecommendationTests(BookRecommendationPage):
         self.click(self.picture_books)
         # asserting result is larger than 0
         result_amount = int(self.get_text(self.picture_books_result).split()[0])
-        print(result_amount)
+        print("Picture books for kids result: " + str(result_amount))
 
-        self.assert_true(result_amount > 0)
+        self.assert_true(result_amount > 0, "Result amount is not greater than 0")
 
         # assertion by image element amounts
-        image_amount = len(self.find_elements('/html/body/div/div[1]/div[2]/main/div[3]/div[3]/div'))
-        print(image_amount)  # optional print of image/book amount
-        self.assert_true(image_amount == 4)
+        image_amount = len(self.find_elements('img'))-1  # (len-1) because one of the images on the Footer is NYPL SASB
+        print("Image amount on the page: " + str(image_amount))  # optional print of image/book amount
+        self.assert_true(image_amount == 4, "Image amount is not greater than 0")
 
     def test_filter_author(self):
         print("test_filter_author()\n")
@@ -113,10 +113,10 @@ class BookRecommendationTests(BookRecommendationPage):
         print("'K' letter result = " + str(k_result))  # optional printing
 
         # finding 'Kazuo' in the results and then clicking the book link to the catalog
-        for x in range(1, k_result + 1):
+        for x in range(1, 3):
             author_name = \
                 self.get_text(
-                    '/html/body/div/div[1]/div[2]/main/div[3]/div[3]/div[' + str(x) + ']/div/div[2]/h4').split()[
+                    'h4').split()[
                     1]
             if author_name == "Kazuo":
                 self.click(self.kazuo_book)
@@ -155,16 +155,16 @@ class BookRecommendationTests(BookRecommendationPage):
 
         # asserting names starting with 'J' letter
         self.assert_true(
-            self.get_text('/html/body/div/div[1]/div[2]/main/div[3]/div[3]/div[1]/div/div[2]/h4').split()[1].startswith(
+            self.get_text('h4').split()[1].startswith(
                 'J'))
 
         for x in range(1, 3):
             print(self.get_text(
-                '/html/body/div/div[1]/div[2]/main/div[3]/div[3]/div[' + str(x) + ']/div/div[2]/h4').split()[
+                'h4').split()[
                       1])
             self.assert_true(
                 self.get_text(
-                    '/html/body/div/div[1]/div[2]/main/div[3]/div[3]/div[' + str(x) + ']/div/div[2]/h4').split()[
+                    'h4').split()[
                     1].startswith('J'))
 
         print("------------------------------------------------")
@@ -178,16 +178,16 @@ class BookRecommendationTests(BookRecommendationPage):
 
         # asserting names starting with 'S' letter
         self.assert_true(
-            self.get_text('/html/body/div/div[1]/div[2]/main/div[3]/div[3]/div[1]/div/div[2]/h4').split()[1].startswith(
+            self.get_text('h4').split()[1].startswith(
                 'S'))
 
         for x in range(1, 3):
             print(self.get_text(
-                '/html/body/div/div[1]/div[2]/main/div[3]/div[3]/div[' + str(x) + ']/div/div[2]/h4').split()[
+                'h4').split()[
                       1])
             self.assert_true(
                 self.get_text(
-                    '/html/body/div/div[1]/div[2]/main/div[3]/div[3]/div[' + str(x) + ']/div/div[2]/h4').split()[
+                    'h4').split()[
                     1].startswith('S'))
 
         # after clicking on "Show All", the list will reset with a total of 12 results.

@@ -4,9 +4,9 @@ from seleniumbase import BaseCase
 class BookRecommendationPage(BaseCase):
 
     breadcrumb = '//*[@id="book-recommendations-breadcrumbs"]'
-    br_home = '/html/body/div/div[1]/div[2]/div[1]/div/div/nav/ol/li[1]/a/span'
-    br_books_and_more = '/html/body/div/div[1]/div[2]/div[1]/div/div/nav/ol/li[2]/a/span'
-    br_recommendations = '/html/body/div/div[1]/div[2]/div[1]/div/div/nav/ol/li[3]/a/span'
+    br_home = '//*[@id="book-recommendations-breadcrumbs"]/ol/li[1]/a/span'
+    br_books_and_more = '//*[@id="book-recommendations-breadcrumbs"]/ol/li[2]/a/span'
+    br_recommendations = '//*[@id="book-recommendations-breadcrumbs"]/ol/li[3]/a/span'
     br_staff_picks = '//*[@id="book-recommendations-breadcrumbs"]/ol/li[4]/span/span'
 
     kids = '//*[@id="kids-link"]'
