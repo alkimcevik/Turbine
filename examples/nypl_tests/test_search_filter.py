@@ -148,17 +148,18 @@ class SearchFilterTests(SearchPage):
 
         # find h4 amount on the page to use for the length in the for loop
         h4_amount = len(self.find_elements(self.h4_links))
+        print(str(h4_amount) + " total results on the first page\n")
 
         count = 0
         for x in range(1, h4_amount + 1):
 
-            first_letter = self.get_text('/html/body/div/div/div[2]/main/div[3]/div/div/div[1]/div[' + str(x) + ']/div/div/div/h4/a').split()[0][0]
+            first_letter = self.get_text('//*[@id="mainContent"]/div[3]/div/div[2]/div[1]/div[' + str(x) + ']/div/div/div/h4').split()[0][0]
             print(first_letter + " is the first letter")
 
             if first_letter == 'W' or first_letter == 'w':
                 count += 1
 
-        print(str(count) + " total word starting with W.")
+        print("\n" + str(count) + " total word starting with W.")
         # asserting the result is equal to expected amount
         expected_amount = 1
         self.assert_true(count >= expected_amount, "No teacher sets with books that start with the letter W.")
