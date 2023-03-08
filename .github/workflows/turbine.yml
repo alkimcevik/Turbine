@@ -40,7 +40,7 @@ jobs:
         
     - name: Install chromedriver
       run: |
-        seleniumbase install chromedriver latest
+        sbase get chromedriver latest
         
         
     - name: Check the console scripts interface
