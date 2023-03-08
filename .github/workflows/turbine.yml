@@ -79,25 +79,25 @@ jobs:
     - name: Run pytest nypl_tests/test_search_filter.py
       continue-on-error: true
       run: |
-        pytest examples/nypl_tests/test_search_filter.py --browser=chrome --headless -v -s
+        pytest examples/nypl_tests/test_search_filter.py --rs --browser=chrome --headless -v -s -n=6 --reruns=2
         
         
     - name: Run pytest nypl_tests/test_sign_up.py
       continue-on-error: true
       run: |
-        pytest examples/nypl_tests/test_sign_up.py --browser=chrome --headless -v -s
+        pytest examples/nypl_tests/test_sign_up.py --rs --browser=chrome --headless -v -s -n=6 --reruns=2
         
         
     - name: Run pytest examples/nypl_tests/test_book_recommendations.py
       continue-on-error: true
       run: |
-        pytest examples/nypl_tests/test_book_recommendations.py --browser=chrome --headless -v -s
+        pytest examples/nypl_tests/test_book_recommendations.py --rs --browser=chrome --headless -v -s -n=6 --reruns=2
         
         
     - name: Run pytest examples/nypl_tests/test_homepage.py
       continue-on-error: true
       run: |
-        pytest examples/nypl_tests/test_homepage.py --browser=chrome --headless -v -s
+        pytest examples/nypl_tests/test_homepage.py --rs --browser=chrome --headless -v -s -n=6 --reruns=2
         
         
     - name: Run pytest examples/nypl_tests/test_mobile.py
