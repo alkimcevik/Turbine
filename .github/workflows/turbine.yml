@@ -57,15 +57,17 @@ jobs:
     #- name: Make sure nosetests is working
     #  run: |
     #    echo "def test_2(): pass" > nothing2.py
-    #    nosetests nothing2.p
-    - name: Turbine Slack Notification
-      uses: rtCamp/action-slack-notify@v2
-      env: 
-        SLACK_CHANNEL: test_reports
-        #SLACK_MESSAGE: "Turbine GH report"
-        SLACK_TITLE: Turbine Test Results
-        SLACK_WEBHOOK: ${{ secrets.TURBINE }}
-        SLACK_USERNAME: incoming-webhook  
+    #    nosetests nothing2.py
+    
+    
+    #- name: Turbine Slack Notification
+    #  uses: rtCamp/action-slack-notify@v2
+    #  env: 
+    #    SLACK_CHANNEL: test_reports
+    #    #SLACK_MESSAGE: "Turbine GH report"
+    #    SLACK_TITLE: Turbine Test Results
+    #    SLACK_WEBHOOK: ${{ secrets.TURBINE }}
+    #    SLACK_USERNAME: incoming-webhook  
     
     
     - name: Run pytest nypl_tests/test_search_filter.py
