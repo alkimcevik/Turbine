@@ -38,15 +38,16 @@ jobs:
         # Stop the build if there are flake8 issues
         # flake8 . --count --show-source --statistics --exclude=temp
         
+        
+    - name: Install chromedriver
+      run: |
+        seleniumbase install chromedriver
+        
     #- name: Install Chrome and Firefox
     #  run: |
     #    sudo apt install google-chrome-stable
     #    sudo apt-get install firefox
     #    sudo apt-get update
-        
-    - name: Install chromedriver
-      run: |
-        seleniumbase install chromedriver
         
         
     - name: Check the console scripts interface
