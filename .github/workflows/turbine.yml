@@ -41,6 +41,7 @@ jobs:
       run: |
         sudo apt install google-chrome-stable
         sudo apt-get install firefox
+        sudo apt-get update  # updated
     - name: Check the console scripts interface
       run: |
         seleniumbase
