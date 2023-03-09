@@ -1,7 +1,8 @@
 from examples.nypl_pages.page_homepage_example import HomePage
+from examples.nypl_utility.utility import NyplUtils
 
 
-class HomepageTests(HomePage):
+class HomepageTests(NyplUtils):
 
     # https://jira.nypl.org/browse/DSD-1194
 
@@ -65,6 +66,7 @@ class HomepageTests(HomePage):
         # featured book.
 
         # asserting if the 'Featured Books' are related
+
         book_dict = {}  # creating a dictionary to add the book names from the 'featured books' link
         for x in range(0, 3):
             book_dict["book{0}".format(x)] = self.get_text('//*[@id="homepage-tabs-2--tab-' + str(x) + '"]')
@@ -72,20 +74,8 @@ class HomepageTests(HomePage):
         print(book_dict)  # optional print to see the book names
         print("_-_-_-_-_-_-_-_-_-")
 
-        # creating a reusable function 'check_unique_values' to check if the values are different
-        def check_unique_values(dictionary):
-            book_set = set()  # creating a set() to add the book names later
-            # for loop to go over the elements of the 'dictionary' parameter to check if they are unique
-            # if they are unique, they will be added to the 'book_set' set
-            for book in dictionary.values():
-                print(book)
-                if book in book_set:
-                    return False
-                book_set.add(book)
-            return True
-
         # calling and asserting the check_unique_values function to check the book_dict dictionary items we created
-        result = check_unique_values(book_dict)  # boolean result
+        result = self.check_unique_values(book_dict)  # boolean result
         print("_-_-_-_-_-_-_-_-_-")
         self.assert_true(result, "related books are not unique")  # checking if the result is TRUE
         print(result)  # printing the boolean result
@@ -147,7 +137,8 @@ class HomepageTests(HomePage):
         # asserting the amount of the related books == 3
         related_books_amount = len(self.find_elements(self.related_books_locator))
         print("There are " + str(related_books_amount) + " related books to Ender's Game.")  # optional print
-        self.assert_true(related_books_amount == 3, "Related books amount is not 3, it is = " + str(related_books_amount))
+        self.assert_true(related_books_amount == 3,
+                         "Related books amount is not 3, it is = " + str(related_books_amount))
 
     def test_feedback_form(self):
         print("test_feedback_form()\n")
