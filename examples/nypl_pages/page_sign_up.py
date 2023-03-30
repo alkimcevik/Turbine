@@ -22,3 +22,6 @@ class SignUpPage(BaseCase):
 
     def open_sign_up_page(self):
         self.open("https://nypl-ds-test-app.vercel.app/fullPages/sign-up#above-header-notification")
+        #self.open("https://nypl-ds-test-li3jif416-nypl.vercel.app/fullPages/sign-up#above-header-notification")  # dark mode URL
+
+

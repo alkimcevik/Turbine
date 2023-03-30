@@ -2,7 +2,7 @@ from seleniumbase import BaseCase
 
 
 class SearchPage(BaseCase):
-    result_text = '//*[@id="mainContent"]/div[3]/div/p'
+    result_text = '//b'
 
     slider_left = '//*[@id="slider-thumb-grades-slider-0"]'
     slider_right = '//*[@id="slider-thumb-grades-slider-1"]'
@@ -21,3 +21,5 @@ class SearchPage(BaseCase):
 
     def open_search_filter_page(self):
         self.open("https://nypl-ds-test-app.vercel.app/fullPages/search-and-filter#above-header-notification")
+        #self.goto('https://nypl-ds-test-li3jif416-nypl.vercel.app/fullPages/search-and-filter')  # dark mode URL
+

@@ -19,6 +19,7 @@ class MobileTests(BookRecommendationPage):
 
         # go to URL
         self.goto('https://nypl-ds-test-app.vercel.app/fullPages/recommendations/adults')
+        # self.goto('https://nypl-ds-test-li3jif416-nypl.vercel.app/fullPages/recommendations/adults')  # dark mode URL
         self.assert_element_not_visible(self.br_home)
         self.assert_element_not_visible(self.br_books_and_more)
         self.assert_element_not_visible(self.br_recommendations)

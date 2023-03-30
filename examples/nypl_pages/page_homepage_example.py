@@ -7,11 +7,10 @@ class HomePage(BaseCase):
     nypl_blogs = '//div[contains(@id,\'grid-1\')]/div[contains(@id,\'card-1\')]'
     doug_reside_blog_link = '//*[@id="row-card-heading-1-2-link"]'
     ender_game = '//*[@id="homepage-tabs-2--tab-2"]'
-    ender_awards = '//*[@id="Ender\'sGame-card"]/div[2]/div[3]/ul'
+    ender_awards = '//div[@id="Ender\'sGame-card"]//p'  # relative XPath
 
     related_books_h4 = '//*[@id="related-books-2"]'
-    # relative xpath used for telated books locator below
-    related_books_locator = '//div[contains(@class,\'chakra-stack\')]/div[contains(@class,\'css-gvpfax\')]'
+    related_books_locator = "// *[contains(@id, 'related-books-2-')]"  # relative XPath with contains
 
     feedback_form = '//*[@id="open"]'
     bug_radio = '//*[@id="bug-wrapper"]/label/span[2]/span'
@@ -35,3 +34,5 @@ class HomePage(BaseCase):
 
     def open_homepage(self):
         self.open("https://nypl-ds-test-app.vercel.app/fullPages/homepage")
+        #self.goto('https://nypl-ds-test-li3jif416-nypl.vercel.app/fullPages/homepage#above-header-notification')  # dark mode URL
+
