@@ -18,6 +18,7 @@ class SearchFilterTests(SearchPage):
         super().tearDown()
 
     def test_slider(self):
+        print("test_slider()")
         # As an elementary, middle school or high school teacher, I want to find teacher sets that are currently
         # available and appropriate for my level of teaching.
 
@@ -73,6 +74,7 @@ class SearchFilterTests(SearchPage):
         self.assert_true(title_1 == title_2)
 
     def test_search_bar(self):
+        print("test_search_bar()")
         # As a teacher of children with vision disabilities, I want to find teacher sets that include books with
         # large print.
 
@@ -105,6 +107,7 @@ class SearchFilterTests(SearchPage):
         self.assert_true(title_1 == title_2)
 
     def test_subjects(self):
+        print("test_subjects()")
         # As a biology teacher, I want to find all teacher sets about animals.
 
         # get the first title to compare against the last title
@@ -135,6 +138,7 @@ class SearchFilterTests(SearchPage):
         self.assert_true(title_1 == title_2)
 
     def test_first_letter(self):
+        print("test_first_letter()")
         # As an elementary school teacher, I want to find teacher sets with books that start with the letter W.
 
         # get the first title to compare against the last title
@@ -150,19 +154,19 @@ class SearchFilterTests(SearchPage):
         h4_amount = len(self.find_elements(self.h4_links))
         print(str(h4_amount) + " total results on the first page\n")
 
-        count = 0
-        for x in range(1, h4_amount + 1):
+        actual_amount = 0
+        for x in range(1, 6):
 
-            first_letter = self.get_text('//*[@id="mainContent"]/div[3]/div/div[2]/div[1]/div[' + str(x) + ']/div/div/div/h4').split()[0][0]
+            first_letter = self.get_text('(//*[@id="undefined-link"])[' + str(x) + ']').split()[0][0]
             print(first_letter + " is the first letter")
 
             if first_letter == 'W' or first_letter == 'w':
-                count += 1
+                actual_amount += 1
 
-        print("\n" + str(count) + " total word starting with W.")
+        print("\n" + str(actual_amount) + " total word starting with W.")
         # asserting the result is equal to expected amount
         expected_amount = 1
-        self.assert_true(count >= expected_amount, "No teacher sets with books that start with the letter W.")
+        self.assert_true(actual_amount >= expected_amount, "Actual = " + str(actual_amount) + ", Expected = " + str(expected_amount) +  " No teacher sets with books that start with the letter W.")
 
         # get the last title
         title_2 = self.get_title()
@@ -172,6 +176,7 @@ class SearchFilterTests(SearchPage):
         self.assert_true(title_1 == title_2)
 
     def test_high_low(self):
+        print("test_high_low()")
         # As a school administrator, I want to review the teacher sets in grade order from highest to lowest.
 
         # get the first title to compare against the last title
@@ -183,13 +188,15 @@ class SearchFilterTests(SearchPage):
         self.click(self.sort_by_high_low)
         self.wait(1)
 
+        print(self.get_current_url())
+
         result_amount = int(self.get_text(self.result_text).split()[0])
 
         # print the result amount
         print(str(result_amount) + " results found")
         # asserting the result is equal to expected amount
         expected_amount = 20
-        self.assert_true(result_amount == expected_amount, "There is not enough teacher sets in this order")
+        self.assert_true(result_amount == expected_amount, "Expected amount = " + str(expected_amount) + ", Actual = " + str(result_amount) + "There is not enough teacher sets in this order")
 
         # get the last title
         title_2 = self.get_title()
@@ -199,6 +206,7 @@ class SearchFilterTests(SearchPage):
         self.assert_true(title_1 == title_2)
 
     def test_language(self):
+        print("test_language()")
         # As a French teacher, I want to find teacher sets that are written in French.
 
         # get the first title to compare against the last title

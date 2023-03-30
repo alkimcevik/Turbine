@@ -38,3 +38,4 @@ class BookRecommendationPage(BaseCase):
 
     def open_book_recommendation_page(self):
         self.open("https://nypl-ds-test-app.vercel.app/fullPages/recommendations/adults")
+        #self.open("https://nypl-ds-test-li3jif416-nypl.vercel.app/fullPages/recommendations/adults")  # dark mode URL
