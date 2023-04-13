@@ -121,7 +121,7 @@ class BookRecommendationTests(BookRecommendationPage):
             if author_name == "Kazuo":
                 self.click(self.kazuo_book)
                 print("Title is = " + self.get_title())
-                self.assert_title("NYPL Catalog")
+                self.assert_title("The drifting classroom. Volume 1, Umezu, Kazuo, 1936- | New York Public Library")
                 return True
 
     def test_stacked_list(self):
