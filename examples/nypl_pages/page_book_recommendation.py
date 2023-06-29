@@ -7,7 +7,7 @@ class BookRecommendationPage(BaseCase):
     br_home = '//*[@id="book-recommendations-breadcrumbs"]/ol/li[1]/a/span'
     br_books_and_more = '//*[@id="book-recommendations-breadcrumbs"]/ol/li[2]/a/span'
     br_recommendations = '//*[@id="book-recommendations-breadcrumbs"]/ol/li[3]/a/span'
-    br_staff_picks = '//*[@id="book-recommendations-breadcrumbs"]/ol/li[4]/span/span'
+    br_staff_picks = '//*[@id="book-recommendations-breadcrumbs"]/ol/li[4]/a/span'
 
     kids = '//*[@id="kids-link"]'
     teens = '//*[@id="teens-link"]'

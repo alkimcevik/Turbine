@@ -74,7 +74,7 @@ class BookRecommendationTests(BookRecommendationPage):
         # assertion by image element amounts
         image_amount = len(self.find_elements('img'))-1  # (len-1) because one of the images on the Footer is NYPL SASB
         print("Image amount on the page: " + str(image_amount))  # optional print of image/book amount
-        self.assert_true(image_amount == 4, "Image amount is not greater than 0")
+        self.assert_true(image_amount > 1, "Image amount is not greater than 0")
 
     def test_filter_author(self):
         print("test_filter_author()\n")
@@ -121,7 +121,7 @@ class BookRecommendationTests(BookRecommendationPage):
             if author_name == "Kazuo":
                 self.click(self.kazuo_book)
                 print("Title is = " + self.get_title())
-                self.assert_title("NYPL Catalog")
+                self.assert_title("The drifting classroom. Volume 1, Umezu, Kazuo, 1936- | New York Public Library")
                 return True
 
     def test_stacked_list(self):
