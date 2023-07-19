@@ -33,6 +33,8 @@ class HomePage(BaseCase):
     ender_related_3 = '//*[@id="related-book-heading-2-2-link"]'
 
     def open_homepage(self):
-        self.open("https://nypl-ds-test-app.vercel.app/fullPages/homepage")
+        url = 'https://nypl-ds-test-app.vercel.app/fullPages/homepage'  # regular URL
+        smoke_test_url = "https://nypl-ds-test-app-git-dsd-1530-ds-170-update-nypl.vercel.app/fullPages/homepage"  # smoke tes url
+        self.open(smoke_test_url)
         #self.goto('https://nypl-ds-test-li3jif416-nypl.vercel.app/fullPages/homepage#above-header-notification')  # dark mode URL
 

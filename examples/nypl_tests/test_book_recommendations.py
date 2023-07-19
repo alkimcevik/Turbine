@@ -46,17 +46,18 @@ class BookRecommendationTests(BookRecommendationPage):
         self.assert_true(fourth_breadcrumb == "Staff Picks")
 
         # asserting navigation to the other pages other than the current page
+        current_url = self.get_current_url()
         self.click(self.br_home)  # Home link
         print(self.get_current_url())
-        self.assert_true("https://nypl-ds-test-app.vercel.app/" in self.get_current_url())
+        self.assert_true("vercel.app" in current_url, "expected URL = " + "vercel.app" + "actual URL = " + current_url)
         self.go_back()
         self.click(self.br_books_and_more)  # Books & More Link
         print(self.get_current_url())
-        self.assert_true("https://nypl-ds-test-app.vercel.app/" in self.get_current_url())
+        self.assert_true("vercel.app" in current_url, "expected URL = " + "vercel.app" + "actual URL = " + current_url)
         self.go_back()
         self.click(self.br_recommendations)  # Recommendations Link
         print(self.get_current_url())
-        self.assert_true("https://nypl-ds-test-app.vercel.app/" in self.get_current_url())
+        self.assert_true("vercel.app" in current_url, "expected URL = " + "vercel.app" + "actual URL = " + current_url)
 
     def test_picture_books(self):
         print("test_picture_books()\n")

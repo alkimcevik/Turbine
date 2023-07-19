@@ -21,7 +21,9 @@ class SignUpPage(BaseCase):
     invalid_school = '//*[@id="school-helperText"]'
 
     def open_sign_up_page(self):
-        self.open("https://nypl-ds-test-app.vercel.app/fullPages/sign-up#above-header-notification")
+        url = 'https://nypl-ds-test-app.vercel.app/fullPages/sign-up#above-header-notification'  # regular URL
+        smoke_test_url = "https://nypl-ds-test-app-git-dsd-1530-ds-170-update-nypl.vercel.app/fullPages/sign-up#above-header-notificationz"  # smoke tes url
+        self.open(smoke_test_url)
         #self.open("https://nypl-ds-test-li3jif416-nypl.vercel.app/fullPages/sign-up#above-header-notification")  # dark mode URL
 
 
