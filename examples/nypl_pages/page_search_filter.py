@@ -21,7 +21,7 @@ class SearchPage(BaseCase):
 
     def open_search_filter_page(self):
         url = 'https://nypl-ds-test-app.vercel.app/fullPages/search-and-filter#above-header-notification'  # regular URL
-        smoke_test_url = "https://nypl-ds-test-app-git-dsd-1530-ds-170-update-nypl.vercel.app/fullPages/search-and-filter#above-header-notification"  # smoke tes url
+        smoke_test_url = "https://nypl-ds-test-app-git-dsd-1605-ds-210-update-nypl.vercel.app/fullPages/search-and-filter#above-header-notification"  # smoke tes url
         self.open(smoke_test_url)
         #self.goto('https://nypl-ds-test-li3jif416-nypl.vercel.app/fullPages/search-and-filter')  # dark mode URL
 

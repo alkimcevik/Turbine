@@ -24,11 +24,11 @@ class HomepageTests(NyplUtils):
         # As a library patron, I expect to see four items under the Staff Picks heading and four items under the NYPL
         # Blog heading.
 
-        staff_picks_items_amount = len(self.find_elements(self.staff_picks))
+        staff_picks_items_amount = len(self.find_elements(self.staff_picks_DS1605))  # todo: change staff_picks_DS1605 after release
         print("Staff Picks has " + str(staff_picks_items_amount) + " items.")
         self.assert_true(staff_picks_items_amount == 4, "Expected = 4, Actual = " + str(staff_picks_items_amount))
 
-        nypl_blog_items_amount = len(self.find_elements(self.nypl_blogs))
+        nypl_blog_items_amount = len(self.find_elements(self.nypl_blogs_DS1605))  # todo: change staff_picks_DS1605 after release
         print("NYPL Blogs has " + str(nypl_blog_items_amount) + " items.")
         self.assert_true(nypl_blog_items_amount == 4, "Expected = 4, Actual = " + str(nypl_blog_items_amount))
 
@@ -36,29 +36,14 @@ class HomepageTests(NyplUtils):
         print("test_doug_reside()\n")
         # As a library patron, I want to find and read a blog post by Doug Reside.
 
-        # assertion 1: to find the blog post
-
+        # assert "Doug Reside" text appears in NYPL Blog section
         blog_writer = 'Doug Reside'  # blog author
-        # blog_2 = 'Carrie McBride'  # optional author
-
-        count = 0  # count to use in assertion
-
-        # for loop to find the amount of the author's blog posts
-        for x in range(1, 5):
-            if blog_writer in self.get_text(
-                    '//*[@id="mainContent"]/div/div[' + str(x) + ']'):
-                print('Author has a blog post on number ' + str(x) + ' blog')  # optional print of the order of teh blog
-                count += 1
-        print(count)
-
-        # asserting the count is >= 1
-        self.assert_true(count >= 1, "The count is not greater than 1")
+        self.assert_true(blog_writer in self.get_text(HomePage.nypl_blog_content_DS1605))  # todo: change staff_picks_DS1605 after release
 
         # assertion 2: to read the blog post
-
         # click the author's post and see if the link will go through
-        self.is_element_clickable(self.doug_reside_blog_link)
-        self.click(self.doug_reside_blog_link)
+        self.is_element_clickable(self.doug_reside_blog_link_DS1605)  # todo: change staff_picks_DS1605 after release
+        self.click(self.doug_reside_blog_link_DS1605)  # todo: change staff_picks_DS1605 after release
 
     def test_featured_books(self):
         print("test_featured_books()\n")
@@ -67,9 +52,16 @@ class HomepageTests(NyplUtils):
 
         # asserting if the 'Featured Books' are related
 
+        """
         book_dict = {}  # creating a dictionary to add the book names from the 'featured books' link
         for x in range(0, 3):
             book_dict["book{0}".format(x)] = self.get_text('//*[@id="homepage-tabs-2--tab-' + str(x) + '"]')
+            """
+
+        # todo: change below to the above one after release DS-1605, tabs-2 part is different on the above script
+        book_dict = {}  # creating a dictionary to add the book names from the 'featured books' link
+        for x in range(0, 3):
+            book_dict["book{0}".format(x)] = self.get_text('//*[@id="homepage-tabs-3--tab-' + str(x) + '"]')
 
         print(book_dict)  # optional print to see the book names
         print("_-_-_-_-_-_-_-_-_-")
@@ -91,7 +83,7 @@ class HomepageTests(NyplUtils):
         assert dune_book_1 != dune_book_2 != dune_book_3
 
         # assertion for "The Eye of the World's" 'related books'
-        self.click(self.the_eye_of_the_world_tab)
+        self.click(self.the_eye_of_the_world_tab_DS1605)  # todo: change staff_picks_DS1605 after release
         teofw_book_1 = self.get_text(self.teofw_related_1)
         teofw_book_2 = self.get_text(self.teofw_related_2)
         print("\n" + teofw_book_1)  # optional print
@@ -100,7 +92,7 @@ class HomepageTests(NyplUtils):
         assert teofw_book_1 != teofw_book_2
 
         # assertion for "Ender's Game" 'related books'
-        self.click(self.enders_game_tab)
+        self.click(self.enders_game_tab_DS1605)  # todo: change staff_picks_DS1605 after release
         ender_book_1 = self.get_text(self.ender_related_1)
         ender_book_2 = self.get_text(self.ender_related_2)
         ender_book_3 = self.get_text(self.ender_related_3)
@@ -119,7 +111,7 @@ class HomepageTests(NyplUtils):
         # the awards won by Ender's Game
 
         # click on "Ender's Game" tab
-        self.click(self.ender_game)
+        self.click(self.ender_game_DS1605)  # todo: change staff_picks_DS1605 after release
 
         # getting the 'Awards' element text and asserting the text
         awards_text = self.get_text(self.ender_awards)
@@ -146,7 +138,6 @@ class HomepageTests(NyplUtils):
         # the feedback form to inform NYPL about the error.
 
         # positive testing to see the submission text after all the necessary fields filled
-        # todo: Is negative testing necessary for this test?
         self.click(self.feedback_form)  # clicking the feedback form on the right bottom corner
         self.click(self.bug_radio)  # clicking bug button
         self.send_keys(self.comment, "What is the 2003 movie directed by Tim Burton?")  # commenting

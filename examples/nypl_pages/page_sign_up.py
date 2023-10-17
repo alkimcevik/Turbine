@@ -22,7 +22,7 @@ class SignUpPage(BaseCase):
 
     def open_sign_up_page(self):
         url = 'https://nypl-ds-test-app.vercel.app/fullPages/sign-up#above-header-notification'  # regular URL
-        smoke_test_url = "https://nypl-ds-test-app-git-dsd-1530-ds-170-update-nypl.vercel.app/fullPages/sign-up#above-header-notificationz"  # smoke tes url
+        smoke_test_url = "https://nypl-ds-test-app-git-dsd-1605-ds-210-update-nypl.vercel.app/fullPages/sign-up#above-header-notification"  # smoke tes url
         self.open(smoke_test_url)
         #self.open("https://nypl-ds-test-li3jif416-nypl.vercel.app/fullPages/sign-up#above-header-notification")  # dark mode URL
 
