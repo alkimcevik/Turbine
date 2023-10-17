@@ -89,9 +89,9 @@ class BookRecommendationTests(BookRecommendationPage):
         self.assert_true(result_amount > 0)
 
         # asserting the results have "Mashama Bailey" as the author in the results.
-        h4_text = self.get_text(self.h4_heading)  # getting the text of the h4
+        h4_text = self.get_text(BookRecommendationPage.h3_heading)  # getting the text of the h4
         print(h4_text)  # optional print of the h4
-        self.assert_text("Mashama", self.h4_heading)  # asserting "Mashama" text in h4
+        self.assert_text("Mashama", BookRecommendationPage.h3_heading)  # asserting "Mashama" text in h4
 
         self.wait(2)
 
@@ -114,10 +114,9 @@ class BookRecommendationTests(BookRecommendationPage):
         print("'K' letter result = " + str(k_result))  # optional printing
 
         # finding 'Kazuo' in the results and then clicking the book link to the catalog
-        for x in range(1, 3):
+        for x in range(1, k_result + 1):
             author_name = \
-                self.get_text(
-                    'h4').split()[
+                self.get_text(BookRecommendationPage.author_result).split()[
                     1]
             if author_name == "Kazuo":
                 self.click(self.kazuo_book)
@@ -156,17 +155,12 @@ class BookRecommendationTests(BookRecommendationPage):
 
         # asserting names starting with 'J' letter
         self.assert_true(
-            self.get_text('h4').split()[1].startswith(
-                'J'))
+            self.get_text(BookRecommendationPage.h3_heading).split()[1].startswith('J'))
 
         for x in range(1, 3):
-            print(self.get_text(
-                'h4').split()[
-                      1])
+            print(self.get_text(BookRecommendationPage.h3_heading).split()[1])
             self.assert_true(
-                self.get_text(
-                    'h4').split()[
-                    1].startswith('J'))
+                self.get_text(BookRecommendationPage.h3_heading).split()[1].startswith('J'))
 
         print("------------------------------------------------")
 
@@ -179,17 +173,12 @@ class BookRecommendationTests(BookRecommendationPage):
 
         # asserting names starting with 'S' letter
         self.assert_true(
-            self.get_text('h4').split()[1].startswith(
-                'S'))
+            self.get_text(BookRecommendationPage.h3_heading).split()[1].startswith('S'))
 
         for x in range(1, 3):
-            print(self.get_text(
-                'h4').split()[
-                      1])
+            print(self.get_text(BookRecommendationPage.h3_heading).split()[1])
             self.assert_true(
-                self.get_text(
-                    'h4').split()[
-                    1].startswith('S'))
+                self.get_text(BookRecommendationPage.h3_heading).split()[1].startswith('S'))
 
         # after clicking on "Show All", the list will reset with a total of 12 results.
         self.click(self.show_all)  # Resetting the list
