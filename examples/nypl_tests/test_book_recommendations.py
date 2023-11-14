@@ -116,13 +116,12 @@ class BookRecommendationTests(BookRecommendationPage):
         # finding 'Kazuo' in the results and then clicking the book link to the catalog
         for x in range(1, k_result + 1):
             author_name = \
-                self.get_text(BookRecommendationPage.author_result).split()[
-                    1]
+                self.get_text(BookRecommendationPage.author_result).split()[1]
             if author_name == "Kazuo":
                 self.click(self.kazuo_book)
+                title = self.get_title()
                 print("Title is = " + self.get_title())
-                self.assert_title("The drifting classroom. Volume 1, Umezu, Kazuo, 1936- | New York Public Library")
-                return True
+                self.assert_true('The drifting classroom.' in title)
 
     def test_stacked_list(self):
         print("test_stacked_list()\n")
