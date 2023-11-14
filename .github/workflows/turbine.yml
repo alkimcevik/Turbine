@@ -56,36 +56,17 @@ jobs:
     #    SLACK_TITLE: Turbine Test Results
     #    SLACK_WEBHOOK: ${{ secrets.TURBINE }}
     #    SLACK_USERNAME: incoming-webhook  
-    
-    
-    - name: Run pytest nypl_tests/test_search_filter.py
+
+    - name: Run all tests
       continue-on-error: true
       run: |
-        pytest examples/nypl_tests/test_search_filter.py --rs --browser=chrome --headless -v -s -n=6 --reruns=2
-        
-        
-    - name: Run pytest nypl_tests/test_sign_up.py
+        pytest examples/nypl_tests --headless --browser=chrome --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --ignore=examples/nypl_tests/test_mobile.py
+
+         
+    - name: Run test_mobile.py
       continue-on-error: true
       run: |
-        pytest examples/nypl_tests/test_sign_up.py --rs --browser=chrome --headless -v -s -n=6 --reruns=2
-        
-        
-    - name: Run pytest examples/nypl_tests/test_book_recommendations.py
-      continue-on-error: true
-      run: |
-        pytest examples/nypl_tests/test_book_recommendations.py --rs --browser=chrome --headless -v -s -n=6 --reruns=2
-        
-        
-    - name: Run pytest examples/nypl_tests/test_homepage.py
-      continue-on-error: true
-      run: |
-        pytest examples/nypl_tests/test_homepage.py --rs --browser=chrome --headless -v -s -n=6 --reruns=2
-        
-        
-    - name: Run pytest examples/nypl_tests/test_mobile.py
-      continue-on-error: true
-      run: |
-        pytest examples/nypl_tests/test_mobile.py --browser=chrome --headless -v -s --mobile
+        pytest examples/nypl_tests/test_mobile.py --headless--browser=chrome --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --mobile
         
 
 
