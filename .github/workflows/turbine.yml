@@ -1,11 +1,12 @@
 name: 'Turbine CI'
 
 on:
-  push: 
-    branches: [ master ]
+  #push: 
+  #  branches: [ master ]
   #schedule:
     #- cron: "45 11 * * 1"
   workflow_dispatch:
+  
 jobs:
   build:
 
@@ -32,23 +33,10 @@ jobs:
     - name: Install SeleniumBase
       run: |
         python setup.py install
-    # - name: Lint with flake8
-      # run: |
-        # pip install flake8
-        # Stop the build if there are flake8 issues
-        # flake8 . --count --show-source --statistics --exclude=temp
-        
         
     - name: Install chromedriver
       run: |
         seleniumbase install chromedriver
-        
-    #- name: Install Chrome and Firefox
-    #  run: |
-    #    sudo apt install google-chrome-stable
-    #    sudo apt-get install firefox
-    #    sudo apt-get update
-        
         
     - name: Check the console scripts interface
       run: |
@@ -59,11 +47,6 @@ jobs:
       run: |
         echo "def test_1(): pass" > nothing.py
         pytest nothing.py
-    #- name: Make sure nosetests is working
-    #  run: |
-    #    echo "def test_2(): pass" > nothing2.py
-    #    nosetests nothing2.py
-    
     
     #- name: Turbine Slack Notification
     #  uses: rtCamp/action-slack-notify@v2
