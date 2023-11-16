@@ -51,7 +51,11 @@ Base interpereter is Python 3.10 for this test suite.
  
  To test the mobile tests in 'test_mobile.py', the test should be run with --mobile command on terminal, for instance:
  pytest test_mobile.py --headless --mobile
-
+ 
+ # URL Management
+ 
+ Use `URLManager` in `examples/nypl_utility` for easy URL handling. Set `SMOKE_TEST_ACTIVE` in `URLManager` to toggle between regular and smoke test URLs, 
+ and change the BASE_SMOKE_TEST_URL to the new test build.
 
 
 
