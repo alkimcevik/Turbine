@@ -1,4 +1,5 @@
 from seleniumbase import BaseCase
+from examples.nypl_utility.url_manager import URLManager
 
 
 class HomePage(BaseCase):
@@ -47,9 +48,8 @@ class HomePage(BaseCase):
     ender_related_2 = '//*[@id="related-book-heading-2-1-link"]'
     ender_related_3 = '//*[@id="related-book-heading-2-2-link"]'
 
-    def open_homepage(self):
-        url = 'https://nypl-ds-test-app.vercel.app/fullPages/homepage'  # regular URL
-        smoke_test_url = "https://nypl-ds-test-app-git-dsd-1605-ds-210-update-nypl.vercel.app/fullPages/homepage"  # smoke tes url
-        self.open(smoke_test_url)
-        #self.goto('https://nypl-ds-test-li3jif416-nypl.vercel.app/fullPages/homepage#above-header-notification')  # dark mode URL
 
+    def open_homepage(self):
+        page_path = 'homepage'
+        url = URLManager.get_url(page_path)
+        self.open(url)
