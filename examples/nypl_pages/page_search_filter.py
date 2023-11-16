@@ -1,4 +1,5 @@
 from seleniumbase import BaseCase
+from examples.nypl_utility.url_manager import URLManager
 
 
 class SearchPage(BaseCase):
@@ -19,9 +20,8 @@ class SearchPage(BaseCase):
 
     lan_french = '//*[@id="language-10-wrapper"]/label/span[2]'
 
-    def open_search_filter_page(self):
-        url = 'https://nypl-ds-test-app.vercel.app/fullPages/search-and-filter#above-header-notification'  # regular URL
-        smoke_test_url = "https://nypl-ds-test-app-git-dsd-1605-ds-210-update-nypl.vercel.app/fullPages/search-and-filter#above-header-notification"  # smoke tes url
-        self.open(smoke_test_url)
-        #self.goto('https://nypl-ds-test-li3jif416-nypl.vercel.app/fullPages/search-and-filter')  # dark mode URL
 
+    def open_search_filter_page(self):
+        page_path = 'search-and-filter'
+        url = URLManager.get_url(page_path)
+        self.open(url)

@@ -1,4 +1,5 @@
 from seleniumbase import BaseCase
+from examples.nypl_utility.url_manager import URLManager
 
 
 class SignUpPage(BaseCase):
@@ -20,10 +21,10 @@ class SignUpPage(BaseCase):
     invalid_pin = '//*[@id="pin-helperText"]'
     invalid_school = '//*[@id="school-helperText"]'
 
+
     def open_sign_up_page(self):
-        url = 'https://nypl-ds-test-app.vercel.app/fullPages/sign-up#above-header-notification'  # regular URL
-        smoke_test_url = "https://nypl-ds-test-app-git-dsd-1605-ds-210-update-nypl.vercel.app/fullPages/sign-up#above-header-notification"  # smoke tes url
-        self.open(smoke_test_url)
-        #self.open("https://nypl-ds-test-li3jif416-nypl.vercel.app/fullPages/sign-up#above-header-notification")  # dark mode URL
+        page_path = 'sign-up'
+        url = URLManager.get_url(page_path)
+        self.open(url)
 
 

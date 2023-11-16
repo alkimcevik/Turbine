@@ -1,5 +1,3 @@
-import pytest
-
 from examples.nypl_pages.page_book_recommendation import BookRecommendationPage
 
 
@@ -115,13 +113,14 @@ class BookRecommendationTests(BookRecommendationPage):
 
         # finding 'Kazuo' in the results and then clicking the book link to the catalog
         for x in range(1, k_result + 1):
-            author_name = \
-                self.get_text(BookRecommendationPage.author_result).split()[1]
+            author_name = self.get_text(BookRecommendationPage.author_result).split()[1]
+            print(author_name)
             if author_name == "Kazuo":
                 self.click(self.kazuo_book)
                 title = self.get_title()
                 print("Title is = " + self.get_title())
                 self.assert_true('The drifting classroom.' in title)
+                return True
 
     def test_stacked_list(self):
         print("test_stacked_list()\n")

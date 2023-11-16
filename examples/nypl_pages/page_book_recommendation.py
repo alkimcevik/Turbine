@@ -1,4 +1,5 @@
 from seleniumbase import BaseCase
+from examples.nypl_utility.url_manager import URLManager
 
 
 class BookRecommendationPage(BaseCase):
@@ -38,7 +39,6 @@ class BookRecommendationPage(BaseCase):
 
 
     def open_book_recommendation_page(self):
-        url = 'https://nypl-ds-test-app.vercel.app/fullPages/recommendations/adults'  # regular URL
-        smoke_test_url = "https://nypl-ds-test-app-git-dsd-1605-ds-210-update-nypl.vercel.app/fullPages/recommendations/adults"  # smoke tes url
-        self.open(smoke_test_url)
-        #self.open("https://nypl-ds-test-li3jif416-nypl.vercel.app/fullPages/recommendations/adults")  # dark mode URL
+        page_path = 'recommendations/adults'
+        url = URLManager.get_url(page_path)
+        self.open(url)
