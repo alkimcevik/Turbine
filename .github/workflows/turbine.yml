@@ -66,7 +66,7 @@ jobs:
     - name: Run test_mobile.py
       continue-on-error: true
       run: |
-        pytest examples/nypl_tests/test_mobile.py --headless--browser=chrome --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --mobile
+        pytest examples/nypl_tests/test_mobile.py --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --mobile
         
 
 
