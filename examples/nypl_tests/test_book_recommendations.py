@@ -1,3 +1,5 @@
+import pytest
+
 from examples.nypl_pages.page_book_recommendation import BookRecommendationPage
 
 
@@ -18,6 +20,7 @@ class BookRecommendationTests(BookRecommendationPage):
         print("RUNNING AFTER EACH TEST")
         super().tearDown()
 
+    @pytest.mark.desktop
     def test_breadcrumbs(self):
         print("test_breadcrumbs()\n")
         # As a desktop user, I expect to see a complete page hierarchy in the breadcrumbs, and I want to be able to
@@ -57,6 +60,7 @@ class BookRecommendationTests(BookRecommendationPage):
         print(self.get_current_url())
         self.assert_true("vercel.app" in current_url, "expected URL = " + "vercel.app" + "actual URL = " + current_url)
 
+    @pytest.mark.desktop
     def test_picture_books(self):
         print("test_picture_books()\n")
         # As a parent, I want to be able to see a list of picture books for kids.
@@ -75,6 +79,7 @@ class BookRecommendationTests(BookRecommendationPage):
         print("Image amount on the page: " + str(image_amount))  # optional print of image/book amount
         self.assert_true(image_amount > 1, "Image amount is not greater than 0")
 
+    @pytest.mark.desktop
     def test_filter_author(self):
         print("test_filter_author()\n")
         # As a fan of Mashama Bailey, I want to be able to filter the list and find a book by my favorite author.
@@ -93,6 +98,7 @@ class BookRecommendationTests(BookRecommendationPage):
 
         self.wait(2)
 
+    @pytest.mark.desktop
     def test_teens(self):
         print("test_teens()\n")
         # As a teenager, I want to pull up the staff picks for teens for Winter 2022 and see if a book by Kazuo Umezz
@@ -122,6 +128,7 @@ class BookRecommendationTests(BookRecommendationPage):
                 self.assert_true('The drifting classroom.' in title)
                 return True
 
+    @pytest.mark.desktop
     def test_stacked_list(self):
         print("test_stacked_list()\n")
         # As a patron who has trouble with visual organization, I want to filter the recommendations for Winter 2022
@@ -134,6 +141,7 @@ class BookRecommendationTests(BookRecommendationPage):
         # the 'class' attribute changes from 'css-1ubn3an' to 'css-q5xggl' and the assertion in on the latter one.
         self.assert_attribute('//*[@id="main-grid"]', "class", 'css-q5xggl')
 
+    @pytest.mark.desktop
     def test_author(self):
         print("test_author()\n")
         # As a finicky library patron, I want to quickly see which books were written by authors whose name begins

@@ -1,3 +1,5 @@
+import pytest
+
 from examples.nypl_pages.page_sign_up import SignUpPage
 
 
@@ -17,6 +19,7 @@ class SignUpTests(SignUpPage):
         print("RUNNING AFTER EACH TEST")
         super().tearDown()
 
+    @pytest.mark.desktop
     def test_nyc_teacher(self):
         # As a valid NYC teacher, I want to successfully sign-up and clearly understand any error that may arise while completing the form.
 
@@ -38,6 +41,7 @@ class SignUpTests(SignUpPage):
         self.assert_element(self.submission_text)
         # self.wait(3)
 
+    @pytest.mark.desktop
     def test_non_nyc_teacher(self):
         # As a teacher from a district outside NYC, I want to try to submit the form without properly filling in the required fields.
 

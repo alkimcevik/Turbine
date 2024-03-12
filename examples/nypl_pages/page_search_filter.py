@@ -13,10 +13,10 @@ class SearchPage(BaseCase):
 
     subject_animals = '//*[@id="subjects-1-wrapper"]/label/span[1]'
 
-    sort_by = '//*[@id="sort-by-select"]'
-    sort_by_z_a = '//*[@id="sort-by-select"]/option[3]'
-    sort_by_high_low = '//*[@id="sort-by-select"]/option[5]'
-    h4_links = '//*[@id="mainContent"]/div[3]/div/div[2]/div[1]/div'
+    sort_by = '//*[contains(text(), "Sort By")]//..//..'
+    sort_by_z_a = '(//*[contains(text(), "Set Titles, Z - A")])'
+    sort_by_high_low = '(//*[contains(text(), "Grades, Low to High")])'
+    h4_links = '(//div//h4)'
 
     lan_french = '//*[@id="language-10-wrapper"]/label/span[2]'
 

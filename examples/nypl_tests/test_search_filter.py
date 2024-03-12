@@ -1,3 +1,5 @@
+import pytest
+
 from examples.nypl_pages.page_search_filter import SearchPage
 
 
@@ -17,6 +19,7 @@ class SearchFilterTests(SearchPage):
         print("RUNNING AFTER EACH TEST")
         super().tearDown()
 
+    @pytest.mark.desktop
     def test_slider(self):
         print("test_slider()")
         # As an elementary, middle school or high school teacher, I want to find teacher sets that are currently
@@ -73,6 +76,7 @@ class SearchFilterTests(SearchPage):
         # compare first and last titles
         self.assert_true(title_1 == title_2)
 
+    @pytest.mark.desktop
     def test_search_bar(self):
         print("test_search_bar()")
         # As a teacher of children with vision disabilities, I want to find teacher sets that include books with
@@ -106,6 +110,7 @@ class SearchFilterTests(SearchPage):
         # compare first and last titles
         self.assert_true(title_1 == title_2)
 
+    @pytest.mark.desktop
     def test_subjects(self):
         print("test_subjects()")
         # As a biology teacher, I want to find all teacher sets about animals.
@@ -137,6 +142,7 @@ class SearchFilterTests(SearchPage):
         # compare first and last titles
         self.assert_true(title_1 == title_2)
 
+    @pytest.mark.desktop
     def test_first_letter(self):
         print("test_first_letter()")
         # As an elementary school teacher, I want to find teacher sets with books that start with the letter W.
@@ -150,14 +156,10 @@ class SearchFilterTests(SearchPage):
         self.click(self.sort_by_z_a)
         self.wait(1)
 
-        # find h4 amount on the page to use for the length in the for loop
-        h4_amount = len(self.find_elements(self.h4_links))
-        print(str(h4_amount) + " total results on the first page\n")
-
         actual_amount = 0
         for x in range(1, 6):
 
-            first_letter = self.get_text('(//*[@id="undefined-link"])[' + str(x) + ']').split()[0][0]
+            first_letter = self.get_text(SearchPage.h4_links + '[' + str(x) + ']').split()[0][0]
             print(first_letter + " is the first letter")
 
             if first_letter == 'W' or first_letter == 'w':
@@ -175,6 +177,7 @@ class SearchFilterTests(SearchPage):
         # compare first and last titles
         self.assert_true(title_1 == title_2)
 
+    @pytest.mark.desktop
     def test_high_low(self):
         print("test_high_low()")
         # As a school administrator, I want to review the teacher sets in grade order from highest to lowest.
@@ -205,6 +208,7 @@ class SearchFilterTests(SearchPage):
         # compare first and last titles
         self.assert_true(title_1 == title_2)
 
+    @pytest.mark.desktop
     def test_language(self):
         print("test_language()")
         # As a French teacher, I want to find teacher sets that are written in French.
