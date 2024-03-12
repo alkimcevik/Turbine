@@ -1,3 +1,5 @@
+import pytest
+
 from examples.nypl_pages.page_book_recommendation import BookRecommendationPage
 from examples.nypl_utility.url_manager import URLManager  # Import the URLManager
 
@@ -7,12 +9,14 @@ class MobileTests(BookRecommendationPage):
     # https://jira.nypl.org/browse/DSD-1195
 
     # https://nypl-ds-test-app.vercel.app/fullPages/recommendations/adults
+    @pytest.mark.mobile
     def test_mobile(self):
         print("test_mobile()\n")
 
         """
         # this test should be run with --mobile command on terminal, for instance:
-        # pytest test_mobile.py --headless --mobile
+        # pytest test_mobile.py --headless --mobile,
+        # or with a marker, e.g.: pytest -m mobile
         # running on an IDE will result with a failure and 'Element was still visible after 7 seconds!' Exception
         """
 
