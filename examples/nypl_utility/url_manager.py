@@ -28,7 +28,7 @@ class URLManager:
     BASE_SMOKE_TEST_URL = 'https://nypl-ds-test-app-git-react18-chakra28-upgrade-nypl.vercel.app/fullPages/'
 
     # Set this to True when running smoke tests, False otherwise
-    SMOKE_TEST_ACTIVE = True
+    SMOKE_TEST_ACTIVE = False
 
 
     @staticmethod
