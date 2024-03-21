@@ -3,13 +3,12 @@ import pytest
 from examples.nypl_pages.page_book_recommendation import BookRecommendationPage
 from examples.nypl_utility.url_manager import URLManager  # Import the URLManager
 
-
+@pytest.mark.mobile
 class MobileTests(BookRecommendationPage):
 
     # https://jira.nypl.org/browse/DSD-1195
 
     # https://nypl-ds-test-app.vercel.app/fullPages/recommendations/adults
-    @pytest.mark.mobile
     def test_mobile(self):
         print("test_mobile()\n")
 

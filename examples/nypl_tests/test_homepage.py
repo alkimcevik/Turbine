@@ -3,7 +3,7 @@ import pytest
 from examples.nypl_pages.page_homepage_example import HomePage
 from examples.nypl_utility.utility import NyplUtils
 
-
+@pytest.mark.desktop
 class HomepageTests(NyplUtils):
 
     # https://jira.nypl.org/browse/DSD-1194
@@ -21,7 +21,6 @@ class HomepageTests(NyplUtils):
         print("RUNNING AFTER EACH TEST")
         super().tearDown()
 
-    @pytest.mark.desktop
     def test_headings_4_items(self):
         print("test_headings_4_items()\n")
         # As a library patron, I expect to see four items under the Staff Picks heading and four items under the NYPL
@@ -35,7 +34,6 @@ class HomepageTests(NyplUtils):
         print("NYPL Blogs has " + str(nypl_blog_items_amount) + " items.")
         self.assert_true(nypl_blog_items_amount == 4, "Expected = 4, Actual = " + str(nypl_blog_items_amount))
 
-    @pytest.mark.desktop
     def test_doug_reside(self):
         print("test_doug_reside()\n")
         # As a library patron, I want to find and read a blog post by Doug Reside.
@@ -49,7 +47,6 @@ class HomepageTests(NyplUtils):
         self.is_element_clickable(self.doug_reside_blog_link)
         self.click(self.doug_reside_blog_link)
 
-    @pytest.mark.desktop
     def test_featured_books(self):
         print("test_featured_books()\n")
         # As a library patron viewing the Featured Books, I expect the related books to be different for each
@@ -87,7 +84,6 @@ class HomepageTests(NyplUtils):
 
         assert ender_book_1 != ender_book_2 != ender_book_3
 
-    @pytest.mark.desktop
     def test_featured_awards(self):
         print("test_featured_awards()\n")
         # As a library patron viewing the Featured Books, I want to see the awards won by and the books related to
@@ -118,7 +114,6 @@ class HomepageTests(NyplUtils):
         self.assert_true(related_books_amount == 3,
                          "Related books amount is not 3, it is = " + str(related_books_amount))
 
-    @pytest.mark.desktop
     def test_feedback_form(self):
         print("test_feedback_form()\n")
         # As a know-it-all website user who found a typo in a description for a blog post, I want to be able to use
