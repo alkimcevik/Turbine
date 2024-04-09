@@ -15,7 +15,7 @@ class SignUpPage(BaseCase):
     pin = '//*[@id="pin"]'
     comments = '//*[@id="comments"]'
     sign_up = '//*[@id="submit-button"]'
-    submission_text = '//*[@id="submit-list-info-heading"]'
+    submission_text = '//*[contains(text(), "Your submission information")]'
 
     invalid_email = '//*[@id="email-helperText"]'
     invalid_pin = '//*[@id="pin-helperText"]'
