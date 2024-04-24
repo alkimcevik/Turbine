@@ -28,7 +28,7 @@ class URLManager:
     BASE_SMOKE_TEST_URL = 'https://nypl-ds-test-app-git-dsd-1757-ds-310-update-nypl.vercel.app/fullPages/'
 
     # Set this to True when running smoke tests, False otherwise
-    SMOKE_TEST_ACTIVE = True
+    SMOKE_TEST_ACTIVE = False
 
 
     @staticmethod
