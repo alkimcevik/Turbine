@@ -116,7 +116,8 @@ class SearchFilterTests(SearchPage):
         title_1 = self.get_title()
         print(self.get_title())
 
-        self.click(self.subject_animals)
+        self.click(self.subjects)  # click "Subjects" accordion
+        self.click(self.subject_animals)  # click "Animals" selection
         self.wait(0.5)
         self.scroll_to_element(self.result_text)
 
@@ -212,7 +213,8 @@ class SearchFilterTests(SearchPage):
         print(self.get_title())
 
         # click on French
-        self.click(self.lan_french)
+        self.click(self.language)  # click 'Language' accordion
+        self.click(self.lan_french)  # click "French" selection
         self.wait(1)
 
         result_amount = int(self.get_text(self.result_text).split()[0])

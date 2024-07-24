@@ -11,14 +11,16 @@ class SearchPage(BaseCase):
     search_bar = '//*[@id="searchbar-textinput-search-bar"]'
     search_button = '//*[@id="searchbar-button-search-bar"]'
 
-    subject_animals = '//*[@id="subjects-1-wrapper"]/label/span[1]'
+    subjects = '//*[@title="Subjects"]'
+    subject_animals = '//*[@id="Animals-wrapper"]//*[contains(text(), "Animals")]'
 
     sort_by = '//*[contains(text(), "Sort By")]//..//..'
     sort_by_z_a = '(//*[contains(text(), "Set Titles, Z - A")])'
     sort_by_high_low = '(//*[contains(text(), "Grades, Low to High")])'
     h4_links = '(//div//h4)'
 
-    lan_french = '//*[@id="language-10-wrapper"]/label/span[2]'
+    language = '//*[@title="Language"]'
+    lan_french = '//*[@id="French-wrapper"]//*[contains(text(), "French")]'
 
 
     def open_search_filter_page(self):
