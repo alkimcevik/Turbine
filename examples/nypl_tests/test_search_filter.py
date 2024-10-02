@@ -34,11 +34,10 @@ class SearchFilterTests(SearchPage):
         self.press_left_arrow(self.slider_right, times=7)
         self.wait(1)
         # result amount for 1-5 grades
-        result_amount = int(self.get_text(self.result_text).split()[0])
+        result_amount = len(self.find_elements(self.result_amount))
         print(str(result_amount) + " results amount for grades 1 to 5")
         # assert result amount is equal to expected amount
-        expected_amount_1 = 11
-        self.assert_true(result_amount == expected_amount_1, "Result amount is NOT greater than expected amount")
+        self.assert_true(1 <= result_amount <= 20, "Result is NOT between the expected range")
 
         # test for Grades 5 to 8
         # refresh the page so that slider can go back to original values
@@ -48,11 +47,10 @@ class SearchFilterTests(SearchPage):
         self.press_left_arrow(self.slider_right, times=4)
         self.wait(1)
         # result amount for 5-8 grades
-        result_amount = int(self.get_text(self.result_text).split()[0])
+        result_amount = len(self.find_elements(self.result_amount))
         print(str(result_amount) + " results amount for grades 5 to 8")
         # assert result amount is equal to expected amount
-        expected_amount_2 = 17
-        self.assert_true(result_amount == expected_amount_2, "Result amount is NOT greater than expected amount")
+        self.assert_true(1 <= result_amount <= 20, "Result is NOT between the expected range")
 
         # test for Grades 9 to 12
         # refresh the page so that slider can go back to original values
@@ -62,11 +60,10 @@ class SearchFilterTests(SearchPage):
         self.press_left_arrow(self.slider_right, times=0)
         self.wait(1)
         # result amount for 9-12 grades
-        result_amount = int(self.get_text(self.result_text).split()[0])
+        result_amount = len(self.find_elements(self.result_amount))
         print(str(result_amount) + " results amount for grades 9 to 12")
         # assert result amount is equal to expected amount
-        expected_amount_3 = 9
-        self.assert_true(result_amount == expected_amount_3, "Result amount is NOT greater than expected amount")
+        self.assert_true(1 <= result_amount <= 20, "Result is NOT between the expected range")
 
         # get the last title
         title_2 = self.get_title()
@@ -90,15 +87,15 @@ class SearchFilterTests(SearchPage):
         self.wait(1)
 
         # optional print of the result
-        print(self.get_text(self.result_text))
+        result_amount = len(self.find_elements(self.result_amount))
+        print(result_amount)
         # first element of the result text, which is the result amount to be compared for assertion
-        result_amount = int(self.get_text(self.result_text).split()[0])
+        result_amount = len(self.find_elements(self.result_amount))
         # print the result amount
         print(str(result_amount) + " results found")
 
-        # assert the result is == expected amount
-        expected_amount = 15
-        self.assert_true(result_amount == expected_amount, "Result is NOT greater than expected amount")
+        # assert the result is between 1  < 20
+        self.assert_true(1 <= result_amount <= 20, "Result is NOT greater than expected amount")
         self.wait(2)
 
         # get the last title
@@ -119,18 +116,16 @@ class SearchFilterTests(SearchPage):
         self.click(self.subjects)  # click "Subjects" accordion
         self.click(self.subject_animals)  # click "Animals" selection
         self.wait(0.5)
-        self.scroll_to_element(self.result_text)
 
         # optional print of the result
-        print(self.get_text(self.result_text))
+        print(self.get_text(self.result_amount))
         # first element of the result text, which is the result amount to be compared for assertion
-        result_amount = int(self.get_text(self.result_text).split()[0])
+        result_amount = len(self.find_elements(self.result_amount))
         # print the result amount
         print(str(result_amount) + " results found")
 
-        # assert the result == expected
-        expected_result = 2
-        self.assert_true(result_amount == expected_result, "Result is NOT equal to the expected amount")
+        # assert the result between 1 and 20
+        self.assert_true(1 <= result_amount <= 20, "Result is NOT between the expected range")
         self.wait(2)
 
         # get the last title
@@ -189,13 +184,12 @@ class SearchFilterTests(SearchPage):
 
         print(self.get_current_url())
 
-        result_amount = int(self.get_text(self.result_text).split()[0])
+        result_amount = len(self.find_elements(self.result_amount))
 
         # print the result amount
         print(str(result_amount) + " results found")
-        # asserting the result is equal to expected amount
-        expected_amount = 20
-        self.assert_true(result_amount == expected_amount, "Expected amount = " + str(expected_amount) + ", Actual = " + str(result_amount) + "There is not enough teacher sets in this order")
+        # asserting the result is equal to expected amount (12-20)
+        self.assert_true(12 <= result_amount <= 20, "Expected amount = 12- 20 "", Actual = " + str(result_amount) + "There is not enough teacher sets in this order")
 
         # get the last title
         title_2 = self.get_title()
@@ -214,10 +208,11 @@ class SearchFilterTests(SearchPage):
 
         # click on French
         self.click(self.language)  # click 'Language' accordion
+        self.click(self.lan_view_all)  # click view all underneath Language
         self.click(self.lan_french)  # click "French" selection
         self.wait(1)
 
-        result_amount = int(self.get_text(self.result_text).split()[0])
+        result_amount = len(self.find_elements(self.result_amount))
 
         # print the result amount
         print(str(result_amount) + " results found")

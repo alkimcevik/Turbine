@@ -25,7 +25,7 @@ class URLManager:
         """
 
     BASE_REGULAR_URL = 'https://nypl-ds-test-app.vercel.app/fullPages/'
-    BASE_SMOKE_TEST_URL = 'https://nypl-ds-test-app-git-dsd-1805-reservoir-320-nypl.vercel.app/fullPages/'
+    BASE_SMOKE_TEST_URL = 'https://nypl-ds-test-app-git-dsd-1836-turbine-reservoir-340-nypl.vercel.app/fullPages/'
 
     # Set this to True when running smoke tests, False otherwise
     SMOKE_TEST_ACTIVE = True
