@@ -106,68 +106,88 @@ class SearchFilterTests(SearchPage):
         self.assert_true(title_1 == title_2)
 
     def test_subjects(self):
-        print("test_subjects()")
+        print("Running test_subjects()")
         # As a biology teacher, I want to find all teacher sets about animals.
 
-        # get the first title to compare against the last title
+        # Get the first title to compare against the last title later
         title_1 = self.get_title()
-        print(self.get_title())
+        print("First title:", title_1)
 
-        self.click(self.subjects)  # click "Subjects" accordion
-        self.click(self.subject_animals)  # click "Animals" selection
-        self.wait(0.5)
+        # Open "Subjects" accordion and select "Animals"
+        self.click(self.subjects)
+        self.click(self.subject_animals)
+        self.wait(0.5)  # Brief wait to ensure filter is applied
 
-        # optional print of the result
-        print(self.get_text(self.result_amount))
-        # first element of the result text, which is the result amount to be compared for assertion
+        # Optionally print the number of results found
+        result_text = self.get_text(self.result_amount)
+        print("Result text:", result_text)
+
+        # Get the result count based on the elements found and display it
         result_amount = len(self.find_elements(self.result_amount))
-        # print the result amount
-        print(str(result_amount) + " results found")
+        print(f"{result_amount} results found")
 
-        # assert the result between 1 and 20
-        self.assert_true(1 <= result_amount <= 20, "Result is NOT between the expected range")
+        # Assert that the result is within the expected range (1 to 20)
+        self.assert_true(
+            1 <= result_amount <= 20,
+            f"Result amount {result_amount} is NOT between the expected range of 1 and 20"
+        )
+
+        # Optional wait for any final loading
         self.wait(2)
 
-        # get the last title
+        # Get the last title for comparison
         title_2 = self.get_title()
-        print(self.get_title())
+        print("Last title:", title_2)
 
-        # compare first and last titles
-        self.assert_true(title_1 == title_2)
+        # Compare first and last titles to ensure they are the same
+        self.assert_true(
+            title_1 == title_2,
+            f"Titles do not match: First title = '{title_1}', Last title = '{title_2}'"
+        )
 
     def test_first_letter(self):
-        print("test_first_letter()")
+        print("Running test_first_letter()")
         # As an elementary school teacher, I want to find teacher sets with books that start with the letter W.
 
-        # get the first title to compare against the last title
+        # Get the first title to compare against the last title later
         title_1 = self.get_title()
-        print(self.get_title())
+        print("First title:", title_1)
 
-        # change the 'Sort By' to 'Set Titles, Z-A'
+        # Change the 'Sort By' to 'Set Titles, Z-A'
         self.click(self.sort_by)
         self.click(self.sort_by_z_a)
-        self.wait(1)
+        self.wait(1)  # Allow page to refresh after sorting
 
+        # Initialize counter for titles starting with 'W'
         actual_amount = 0
+
+        # Loop through the first 5 h4 links to check for 'W' as the first letter
         for x in range(1, 6):
+            first_letter = self.get_text(f"{SearchPage.h4_links}[{x}]").split()[0][0].upper()
+            print(f"{first_letter} is the first letter")
 
-            first_letter = self.get_text(SearchPage.h4_links + '[' + str(x) + ']').split()[0][0]
-            print(first_letter + " is the first letter")
-
-            if first_letter == 'W' or first_letter == 'w':
+            # Count if the first letter is 'W'
+            if first_letter == 'W':
                 actual_amount += 1
 
-        print("\n" + str(actual_amount) + " total word starting with W.")
-        # asserting the result is equal to expected amount
+        print(f"\nTotal words starting with 'W': {actual_amount}")
+
+        # Assert that the actual count is at least the expected amount
         expected_amount = 1
-        self.assert_true(actual_amount >= expected_amount, "Actual = " + str(actual_amount) + ", Expected = " + str(expected_amount) +  " No teacher sets with books that start with the letter W.")
+        self.assert_true(
+            actual_amount >= expected_amount,
+            f"Actual = {actual_amount}, Expected = {expected_amount}. No teacher sets with books that start with the letter W."
+        )
 
-        # get the last title
+        # Get the last title and compare it to the first title
         title_2 = self.get_title()
-        print(self.get_title())
+        print("Last title:", title_2)
 
-        # compare first and last titles
-        self.assert_true(title_1 == title_2)
+        # Verify that the first and last titles are the same after sorting
+        self.assert_true(
+            title_1 == title_2,
+            f"Titles do not match: First title = '{title_1}', Last title = '{title_2}'"
+        )
 
     def test_high_low(self):
         print("test_high_low()")
