@@ -14,9 +14,15 @@ class SearchPage(BaseCase):
     subjects = '//*[@title="Subjects"]'
     subject_animals = '//*[@id="Animals-wrapper"]//*[contains(text(), "Animals")]'
 
-    sort_by = '(//*[contains(text(), "Sort by")]//..//..)[2]'
-    sort_by_z_a = '(//*[contains(text(), "Set Titles, Z - A")])'
-    sort_by_high_low = '(//*[contains(text(), "Grades, Low to High")])'
+    #sort_by = '(//*[contains(text(), "Sort By: Newest to oldest")]//..//..)[1]'  # old locator for 'Sort By' dropdown
+    sort_by = '//*[@id="menu-button-:RaslqlacnkmH1:"]'  # new locator for 'Sort By' dropdown
+    dropdown_list = '//*[@id="menu-list-:RaslqlacnkmH1:"]'  # new locator for 'Sort By' dropdown
+    #sort_by_z_a = '(//*[contains(text(), "Sort By: Title Z - A")])'
+
+    second_page = '(//*[@aria-label="Page 2"])'
+
+    sort_by_z_a = '(//*[@id="menu-list-:RaslqlacnkmH1:"]//button)[4]'
+    sort_by_high_low = '(//*[@id="menu-list-:RaslqlacnkmH1:"]//button)[6]'
     h4_links = '(//div//h4)'
 
     language = '//*[@title="Language"]'
@@ -25,6 +31,7 @@ class SearchPage(BaseCase):
 
 
     def open_search_filter_page(self):
+        # https://nypl-ds-test-app.vercel.app/fullPages/search-and-filter
         page_path = 'search-and-filter'
         url = URLManager.get_url(page_path)
         self.open(url)
