@@ -14,13 +14,7 @@ class SearchPage(BaseCase):
     subjects = '//*[@title="Subjects"]'
     subject_animals = '//*[@id="Animals-wrapper"]//*[contains(text(), "Animals")]'
 
-    #sort_by = '(//*[contains(text(), "Sort By: Newest to oldest")]//..//..)[1]'  # old locator for 'Sort By' dropdown
     sort_by = '//*[@id="menu-button-:RaslqlacnkmH1:"]'  # new locator for 'Sort By' dropdown
-    dropdown_list = '//*[@id="menu-list-:RaslqlacnkmH1:"]'  # new locator for 'Sort By' dropdown
-    #sort_by_z_a = '(//*[contains(text(), "Sort By: Title Z - A")])'
-
-    second_page = '(//*[@aria-label="Page 2"])'
-
     sort_by_z_a = '(//*[@id="menu-list-:RaslqlacnkmH1:"]//button)[4]'
     sort_by_high_low = '(//*[@id="menu-list-:RaslqlacnkmH1:"]//button)[6]'
     h4_links = '(//div//h4)'
