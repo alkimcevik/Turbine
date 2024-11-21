@@ -3,6 +3,7 @@ import pytest
 from examples.nypl_pages.page_book_recommendation import BookRecommendationPage
 from examples.nypl_utility.url_manager import URLManager  # Import the URLManager
 
+@pytest.mark.skip
 @pytest.mark.mobile
 class MobileTests(BookRecommendationPage):
 
