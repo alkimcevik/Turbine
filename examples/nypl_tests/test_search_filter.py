@@ -2,7 +2,6 @@ import pytest
 
 from examples.nypl_pages.page_search_filter import SearchPage
 
-@pytest.mark.skip
 @pytest.mark.desktop
 class SearchFilterTests(SearchPage):
     # https://jira.nypl.org/browse/DSD-1129
