@@ -2,7 +2,7 @@ import pytest
 
 from examples.nypl_pages.page_homepage_example import HomePage
 from examples.nypl_utility.utility import NyplUtils
-@pytest.mark.skip
+
 @pytest.mark.desktop
 class HomepageTests(NyplUtils):
 

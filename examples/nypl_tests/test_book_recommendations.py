@@ -3,7 +3,6 @@ import pytest
 from examples.nypl_pages.page_book_recommendation import BookRecommendationPage
 
 
-@pytest.mark.skip
 @pytest.mark.desktop
 class BookRecommendationTests(BookRecommendationPage):
 
