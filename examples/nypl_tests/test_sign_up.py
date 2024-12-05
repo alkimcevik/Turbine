@@ -35,7 +35,7 @@ class SignUpTests(SignUpPage):
         self.click(self.pin)
         self.send_keys(self.pin, "1234")
         self.send_keys(self.comments, "Joe needs a new laptop")
-        #self.click(self.sign_up) # TODO commented out for deliberate BrowserStack failure
+        self.click(self.sign_up) # TODO comment-out for deliberate BrowserStack failure
         # asserting submission text is visible
         self.assert_element(self.submission_text)
         # self.wait(3)
