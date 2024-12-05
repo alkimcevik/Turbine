@@ -7,16 +7,16 @@ class SignUpTests(SignUpPage):
     # https://jira.nypl.org/browse/DSD-1130
 
     # https://nypl-ds-test-app.vercel.app/fullPages/sign-up#above-header-notification
-
-    def setUp(self):
+    @pytest.fixture(autouse=True)
+    def setup_and_teardown(self, request):
         super().setUp()
-        print("\nRUNNING BEFORE EACH TEST")
-
-        # open blog page
         self.open_sign_up_page()
-
-    def tearDown(self):
-        print("RUNNING AFTER EACH TEST")
+        self.wait_for_ready_state_complete()
+        self.session_id = self.driver.session_id  # Retrieve the session_id from the WebDriver instance
+        # Store the session_id in the request node
+        request.node.session_id = self.session_id
+        yield
+        # Perform teardown
         super().tearDown()
 
     def test_nyc_teacher(self):
@@ -35,7 +35,7 @@ class SignUpTests(SignUpPage):
         self.click(self.pin)
         self.send_keys(self.pin, "1234")
         self.send_keys(self.comments, "Joe needs a new laptop")
-        self.click(self.sign_up)
+        self.click(self.sign_up) # TODO comment-out for deliberate BrowserStack failure
         # asserting submission text is visible
         self.assert_element(self.submission_text)
         # self.wait(3)
