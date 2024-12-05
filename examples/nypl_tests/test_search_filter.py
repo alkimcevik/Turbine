@@ -8,15 +8,16 @@ class SearchFilterTests(SearchPage):
 
     # https://nypl-ds-test-app.vercel.app/fullPages/search-and-filter#above-header-notification
 
-    def setUp(self):
+    @pytest.fixture(autouse=True)
+    def setup_and_teardown(self, request):
         super().setUp()
-        print("\nRUNNING BEFORE EACH TEST")
-
-        # open blog page
         self.open_search_filter_page()
-
-    def tearDown(self):
-        print("RUNNING AFTER EACH TEST")
+        self.wait_for_ready_state_complete()
+        self.session_id = self.driver.session_id  # Retrieve the session_id from the WebDriver instance
+        # Store the session_id in the request node
+        request.node.session_id = self.session_id
+        yield
+        # Perform teardown
         super().tearDown()
 
     def test_slider(self):
