@@ -32,9 +32,9 @@ framework: pytest
 # Platforms object contains all the browser / device combinations you want to test on.
 # Entire list available here -> (https://www.browserstack.com/list-of-browsers-and-platforms/automate)
 platforms:
-  - browserName: Edge  # Edge, Chrome, Safari
-    os: Windows  # Windows, OS X
-    osVersion: 11  # 10,11,12 (Windows), Sonoma ()OS X)
+  - browserName: Safari  # Edge, Chrome, Safari
+    os: OS X  # Windows, OS X
+    osVersion: Sonoma  # 10,11,12 (Windows), Sonoma (OS X)
     browserVersion: latest
   # - os: OS X
   #   osVersion: Sonoma

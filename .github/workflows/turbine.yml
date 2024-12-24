@@ -41,7 +41,13 @@ jobs:
     - name: Install chromedriver
       run: |
         seleniumbase install chromedriver
-        
+
+    - name: Install Flake8
+      run: pip install flake8
+
+    - name: Run Flake8 Linter
+      run: flake8 examples/nypl_tests --max-line-length=120 --statistics --count
+
     - name: Check the console scripts interface
       run: |
         seleniumbase
