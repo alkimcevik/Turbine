@@ -2,6 +2,7 @@ import pytest
 
 from examples.nypl_pages.page_book_recommendation import BookRecommendationPage
 
+
 @pytest.mark.desktop
 class BookRecommendationTests(BookRecommendationPage):
 
@@ -74,7 +75,7 @@ class BookRecommendationTests(BookRecommendationPage):
         self.assert_true(result_amount > 0, "Result amount is not greater than 0")
 
         # assertion by image element amounts
-        image_amount = len(self.find_elements('img'))-1  # (len-1) because one of the images on the Footer is NYPL SASB
+        image_amount = len(self.find_elements('img')) - 1  # (len-1) because one of the images on the Footer is NYPL SASB
         print("Image amount on the page: " + str(image_amount))  # optional print of image/book amount
         self.assert_true(image_amount > 1, "Image amount is not greater than 0")
 
@@ -183,4 +184,3 @@ class BookRecommendationTests(BookRecommendationPage):
         initial_result = int(self.get_text(self.book_result).split()[0])
         print("\nAfter clicking 'Show All', book result = " + str(initial_result))
         self.assert_true(initial_result == 12)
-
