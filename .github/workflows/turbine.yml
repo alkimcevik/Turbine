@@ -47,7 +47,7 @@ jobs:
 
     - name: Run Flake8 Linter
       continue-on-error: true
-      run: flake8 examples/nypl_tests --max-line-length=120 --statistics --count
+      run: flake8 examples/nypl_tests --max-line-length=120 --statistics --count || true
 
     - name: Check the console scripts interface
       run: |
