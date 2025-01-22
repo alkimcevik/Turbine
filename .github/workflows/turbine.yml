@@ -1,14 +1,14 @@
 name: 'Turbine CI'
 
 on:
-  # push:
-  #   branches:
-  #     - master
-  # pull_request:
-  #   branches:
-  #     - master
-  # schedule:
-  #   - cron: '45 11 * * 1' # Runs every Monday at 11:45 AM UTC
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  schedule:
+    - cron: '45 11 * * 1' # Runs every Monday at 11:45 AM UTC
   workflow_dispatch:
 
 jobs:
@@ -102,13 +102,27 @@ jobs:
         publish_branch: gh-pages
         publish_dir: allure-history
 
-    # # Step 13: Send Slack Notification (optional)
-    # - name: Slack Notification
-    #   if: github.event_name == 'schedule'
-    #   uses: rtCamp/action-slack-notify@v2
-    #   env:
-    #     SLACK_CHANNEL: test_reports
-    #     SLACK_COLOR: ${{ job.status }}
-    #     SLACK_MESSAGE: 'https://alkimcevik.github.io/Turbine/'
-    #     SLACK_TITLE: Turbine Test Results
-    #     SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+    #- name: Turbine Slack Notification
+    #  uses: rtCamp/action-slack-notify@v2
+    #  env: 
+    #    SLACK_CHANNEL: test_reports
+    #    #SLACK_MESSAGE: "Turbine GH report"
+    #    SLACK_TITLE: Turbine Test Results
+    #    SLACK_WEBHOOK: ${{ secrets.TURBINE }}
+    #    SLACK_USERNAME: incoming-webhook  
+
+    # - name: Run all tests
+    #   continue-on-error: true
+    #   run: |
+    #     pytest examples/nypl_tests --headless --browser=chrome --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --ignore=examples/nypl_tests/test_mobile.py
+
+    - name: Run all tests
+      continue-on-error: true
+      run: |
+        pytest examples/nypl_test/test_sign_up.py --headless --browser=chrome --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --ignore=examples/nypl_tests/test_mobile.py
+
+         
+    # - name: Run test_mobile.py
+    #   continue-on-error: true
+    #   run: |
+    #     pytest examples/nypl_tests/test_mobile.py --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --mobile
