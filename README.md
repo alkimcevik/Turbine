@@ -57,8 +57,6 @@ Base interpereter is Python 3.10 for this test suite.
  Use `URLManager` in `examples/nypl_utility` for easy URL handling. Set `SMOKE_TEST_ACTIVE` in `URLManager` to toggle between regular and smoke test URLs, 
  and change the BASE_SMOKE_TEST_URL to the new test build. 
 
-test
-
 
 
 
