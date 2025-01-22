@@ -96,9 +96,11 @@ jobs:
 
     # Step 13: Deploy report to GitHub Pages
     - name: Deploy report to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v2
-      env:
-        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        publish_branch: gh-pages
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: allure-history
+        destination_dir: ""  # Optional, leave empty for root directory
+        external_repository: ""  # Optional, leave empty unless pushing to another repo
+        user_name: "GitHub Actions"
+        user_email: "github-actions@github.com"
