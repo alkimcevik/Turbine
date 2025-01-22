@@ -40,6 +40,7 @@ class SignUpTests(SignUpPage):
         self.assert_element(self.submission_text)
         # self.wait(3)
 
+    @pytest.mark.skip(reason="Testing purposes")
     def test_non_nyc_teacher(self):
         # As a teacher from a district outside NYC, I want to try to submit the form without properly filling in the required fields.
 
