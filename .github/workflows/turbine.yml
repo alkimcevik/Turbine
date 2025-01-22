@@ -1,10 +1,6 @@
 name: 'Turbine CI'
 
 on:
-  #push: 
-  #  branches: [ master ]
-  #schedule:
-    #- cron: "45 11 * * 1"
   workflow_dispatch:
 
 jobs:
@@ -35,90 +31,65 @@ jobs:
         python -m pip install --upgrade wheel
         pip install -r requirements.txt
 
-    # Step 4: Install and update SeleniumBase
+    # Step 4: Install SeleniumBase
     - name: Install SeleniumBase
       run: |
         python setup.py install
         pip install -U seleniumbase
 
-    # Step 5: Install chromedriver
-    - name: Install chromedriver
-      run: |
-        seleniumbase install chromedriver
+    # Step 5: Install Allure Pytest Plugin
+    - name: Install Allure Pytest Plugin
+      run: pip install allure-pytest
 
-    # Step 6: Install and run Flake8 Linter
+    # Step 6: Install chromedriver
+    - name: Install chromedriver
+      run: seleniumbase install chromedriver
+
+    # Step 7: Install and run Flake8 Linter
     - name: Install Flake8
       run: pip install flake8
     - name: Run Flake8 Linter
       continue-on-error: true
       run: flake8 examples/nypl_tests --max-line-length=120 --statistics --count || true
 
-    # Step 7: Run a quick pytest check
+    # Step 8: Ensure pytest is working
     - name: Make sure pytest is working
       run: |
         echo "def test_1(): pass" > nothing.py
         pytest nothing.py
 
-    # Step 8: Run all tests
+    # Step 9: Run all tests and generate Allure results
     - name: Run all tests
       continue-on-error: true
       run: |
         pytest examples/nypl_tests --headless --browser=chrome --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --ignore=examples/nypl_tests/test_mobile.py --alluredir=reports/allure-results
 
-    # Step 9: Run mobile-specific tests
+    # Step 10: Run mobile-specific tests
     - name: Run test_mobile.py
       continue-on-error: true
       run: |
         pytest examples/nypl_tests/test_mobile.py --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --mobile --alluredir=reports/allure-results
 
-    # Step 10: Get Allure history (optional for scheduled runs)
+    # Step 11: Get Allure history
     - name: Get Allure history
       uses: actions/checkout@v2
-      if: github.event_name == 'schedule'
       continue-on-error: true
       with:
         ref: gh-pages
         path: gh-pages
 
-    # Step 11: Generate Allure report
+    # Step 12: Generate Allure report
     - name: Generate Allure report
       uses: simple-elf/allure-report-action@master
-      if: github.event_name == 'schedule'
       with:
         allure_results: reports/allure-results
         allure_history: allure-history
 
-    # Step 12: Deploy report to GitHub Pages
+    # Step 13: Deploy report to GitHub Pages
     - name: Deploy report to GitHub Pages
-      if: github.event_name == 'schedule'
       uses: peaceiris/actions-gh-pages@v2
       env:
         PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         publish_branch: gh-pages
         publish_dir: allure-history
-
-    #- name: Turbine Slack Notification
-    #  uses: rtCamp/action-slack-notify@v2
-    #  env: 
-    #    SLACK_CHANNEL: test_reports
-    #    #SLACK_MESSAGE: "Turbine GH report"
-    #    SLACK_TITLE: Turbine Test Results
-    #    SLACK_WEBHOOK: ${{ secrets.TURBINE }}
-    #    SLACK_USERNAME: incoming-webhook  
-
-    # - name: Run all tests
-    #   continue-on-error: true
-    #   run: |
-    #     pytest examples/nypl_tests --headless --browser=chrome --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --ignore=examples/nypl_tests/test_mobile.py
-
-    - name: Run all tests
-      continue-on-error: true
-      run: |
-        pytest examples/nypl_test/test_sign_up.py --headless --browser=chrome --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --ignore=examples/nypl_tests/test_mobile.py
-
-         
-    # - name: Run test_mobile.py
-    #   continue-on-error: true
-    #   run: |
-    #     pytest examples/nypl_tests/test_mobile.py --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --mobile
