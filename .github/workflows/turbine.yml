@@ -1,14 +1,10 @@
 name: 'Turbine CI'
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
-  schedule:
-    - cron: '45 11 * * 1' # Runs every Monday at 11:45 AM UTC
+  #push: 
+  #  branches: [ master ]
+  #schedule:
+    #- cron: "45 11 * * 1"
   workflow_dispatch:
 
 jobs:
