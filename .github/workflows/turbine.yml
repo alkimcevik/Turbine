@@ -1,13 +1,18 @@
 name: 'Turbine CI'
 
 on:
+  #push: 
+  #  branches: [ master ]
+  #schedule:
+    #- cron: "45 11 * * 1"
   workflow_dispatch:
-
+  
 jobs:
   build:
-    runs-on: ubuntu-latest
+
     env:
       PY_COLORS: "1"
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       max-parallel: 6
@@ -15,92 +20,62 @@ jobs:
         python-version: ["3.10"]
 
     steps:
-    # Step 1: Checkout repository
     - uses: actions/checkout@v4
-
-    # Step 2: Set up Python environment
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-
-    # Step 3: Install dependencies
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         python -m pip install --upgrade wheel
         pip install -r requirements.txt
-
-    # Step 4: Install SeleniumBase
     - name: Install SeleniumBase
       run: |
         python setup.py install
+        
+    - name: Update SeleniumBase
+      run: |
         pip install -U seleniumbase
-
-    # Step 5: Install Allure Pytest Plugin
-    - name: Install Allure Pytest Plugin
-      run: pip install allure-pytest
-
-    # Step 6: Install chromedriver
+        
     - name: Install chromedriver
-      run: seleniumbase install chromedriver
+      run: |
+        seleniumbase install chromedriver
 
-    # Step 7: Install and run Flake8 Linter
     - name: Install Flake8
       run: pip install flake8
+
     - name: Run Flake8 Linter
       continue-on-error: true
       run: flake8 examples/nypl_tests --max-line-length=120 --statistics --count || true
 
-    # Step 8: Ensure pytest is working
+    - name: Check the console scripts interface
+      run: |
+        seleniumbase
+        sbase
+
     - name: Make sure pytest is working
       run: |
         echo "def test_1(): pass" > nothing.py
         pytest nothing.py
+    
+    #- name: Turbine Slack Notification
+    #  uses: rtCamp/action-slack-notify@v2
+    #  env: 
+    #    SLACK_CHANNEL: test_reports
+    #    #SLACK_MESSAGE: "Turbine GH report"
+    #    SLACK_TITLE: Turbine Test Results
+    #    SLACK_WEBHOOK: ${{ secrets.TURBINE }}
+    #    SLACK_USERNAME: incoming-webhook  
 
-    # # Step 9: Run all tests and generate Allure results
-    # - name: Run all tests
-    #   continue-on-error: true
-    #   run: |
-    #     pytest examples/nypl_tests --headless --browser=chrome --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --ignore=examples/nypl_tests/test_mobile.py --alluredir=reports/allure-results
-
-        
-
-    # Step 9: Run all tests and generate Allure results
     - name: Run all tests
       continue-on-error: true
       run: |
-        pytest examples/nypl_tests/test_sign_up.py --headless --browser=chrome --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --ignore=examples/nypl_tests/test_mobile.py --alluredir=reports/allure-results
-
-    
-    # # Step 10: Run mobile-specific tests
-    # - name: Run test_mobile.py
-    #   continue-on-error: true
-    #   run: |
-    #     pytest examples/nypl_tests/test_mobile.py --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --mobile --alluredir=reports/allure-results
-
-    # Step 11: Get Allure history
-    - name: Get Allure history
-      uses: actions/checkout@v2
+        pytest examples/nypl_tests --headless --browser=chrome --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --ignore=examples/nypl_tests/test_mobile.py
+         
+    - name: Run test_mobile.py
       continue-on-error: true
-      with:
-        ref: gh-pages
-        path: gh-pages
+      run: |
+        pytest examples/nypl_tests/test_mobile.py --rs -v -s -n=6 --reruns=2 --reruns-delay=1 --mobile
+        
 
-    # Step 12: Generate Allure report
-    - name: Generate Allure report
-      uses: simple-elf/allure-report-action@master
-      with:
-        allure_results: reports/allure-results
-        allure_history: allure-history
-
-    # Step 13: Deploy report to GitHub Pages
-    - name: Deploy report to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: allure-history
-        destination_dir: ""  # Optional, leave empty for root directory
-        external_repository: ""  # Optional, leave empty unless pushing to another repo
-        user_name: "GitHub Actions"
-        user_email: "github-actions@github.com"
